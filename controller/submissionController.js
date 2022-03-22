@@ -7,7 +7,7 @@ const getSubmisson = (req,res) => {
    //res.send("lista");
     console.log('lista')
     return res.render('index', {
-        submissions: 'funciona',
+        submissions: ['LINK1', 'LINK2'],
     })
 }
 
