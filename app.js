@@ -3,30 +3,29 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const path =  require('path');
-const exhbs = require('express-handlebars');
-const methodOverride = require('method-override');
 const session = require('express-session');
-const morgan = require('morgan');
 const dbConnect=require('./config/mongo')
 
 app.use(cors())
 
 
-
+//GUARDAMOS LAS RUTAS
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
-// view engine setup
+// ENGINE PARA MOSTRAR EL HTML
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+//FUNCIONES PARA USAR
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//ESTABLECEMOS LAS RUTAS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
@@ -34,6 +33,7 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -46,16 +46,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
+//APP LOCAL
 module.exports = app;
-
-
-
-
-
-const port = process.env.PORT
+const port = 3000;
 
 app.listen(port, () =>{
 
-    console.log('a');
+    console.log('Listening on port 3000');
 })
 
