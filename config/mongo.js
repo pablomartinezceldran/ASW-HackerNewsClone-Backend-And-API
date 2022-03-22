@@ -6,6 +6,8 @@ const dbConnect = () =>{
         {
             useNewUrlParser: true,
             useUnifiedTopology:true,
+            useFindandModify: false,
+            useCreateIndex: true
         },(err,res) =>{
             if(!err) console.log('Conectado a la DB correctamente')
             else console.log('Error de conexión con la DB')
