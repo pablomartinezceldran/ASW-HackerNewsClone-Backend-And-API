@@ -29,6 +29,12 @@
         </div>
       </nav>
     </div>
-    <h1><%= submissions %></h1>
+        <% submissions.forEach( (submission)=>{ %>
+          <tr>
+              <td>
+                <%= submission %> <br>
+              </td>
+          </tr>
+          <% }) %>
   </body>
 </html>
