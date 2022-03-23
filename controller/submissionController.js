@@ -6,7 +6,7 @@ const mostrarIndex = (req,res) => {
    //get data de la db
     //pasarlo en submissions
     return res.render('index', {
-        submissions: ['LINK1', 'LINK2'],
+        submissions: ['LINK1', 'LINK2', 'pero ordenado por likes'],
     })
 }
 
@@ -21,7 +21,7 @@ const mostrarSubmission = (req,res) => {
     //get data de la db ordenada
     //pasarlo en submissions
     return res.render('index', {
-        submissions: ['LINK1', 'LINK2','pero ordenados por likes'],
+        submissions: ['LINK1', 'LINK2','pero ordenados por data'],
     })
  }
 
@@ -29,9 +29,7 @@ const mostrarSubmission = (req,res) => {
  const mostrarSubmissionForm = (req,res) => {
     //get data de la db
      //pasarlo en submissions
-     return res.render('submit', {
-         submissions: ['LINK1', 'LINK2'],
-     })
+     return res.render('submit')
  }
 
 const createSubmisson = (req,res) => {

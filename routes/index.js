@@ -7,6 +7,7 @@ const alumnoController = require('../controller/submissionController')
 router.get('/', alumnoController.mostrarIndex);
 router.get('/newest', alumnoController.mostrarNewest);
 router.get('/submit', alumnoController.mostrarSubmissionForm);
+router.post('/submission', alumnoController.mostrarNewest);
 router.get('/:id', alumnoController.mostrarSubmission);
 
 
