@@ -2,13 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 
-const alumnoController = require('../controller/submissionController')
+const submissionController = require('../controller/submissionController')
 
-router.get('/', alumnoController.mostrarIndex);
-router.get('/newest', alumnoController.mostrarNewest);
-router.get('/submit', alumnoController.mostrarSubmissionForm);
-router.post('/submission', alumnoController.mostrarNewest);
-router.get('/:id', alumnoController.mostrarSubmission);
+router.get('/', submissionController.mostrarIndex);
+
+router.get('/newest', submissionController.mostrarNewest);
+
+router.get('/submit', submissionController.mostrarSubmissionForm);
+
+router.post('/submission', submissionController.createSubmisson);
+
+router.get('/:id', submissionController.mostrarSubmission);
 
 
 
