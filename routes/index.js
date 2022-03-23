@@ -4,9 +4,10 @@ var router = express.Router();
 
 const alumnoController = require('../controller/submissionController')
 
-router.get('/', alumnoController.mostrar);
-router.get('/newest', alumnoController.mostrar);
-router.get('/submit', alumnoController.mostrar);
+router.get('/', alumnoController.mostrarIndex);
+router.get('/newest', alumnoController.mostrarNewest);
+router.get('/submit', alumnoController.mostrarSubmissionForm);
+router.get('/:id', alumnoController.mostrarSubmission);
 
 
 
