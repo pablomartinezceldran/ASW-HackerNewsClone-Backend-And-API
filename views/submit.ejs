@@ -7,19 +7,51 @@
         <title>Submit</title>
       </head>
 
-<body>
+<body style="width: 100%;">
 
 
-  <div class="create-blog content">
-    <li class="nav-item">
-        <a class="nav-link" href="/">Index<span class="sr-only">(current)</span></a>
-      </li>
-    <form action="/create" method="POST">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required>
-      <label for="url">URL:</label>
-      <input type="text" id="url" name="url" required>
-      <button>Submit</button>
+  <div class="create-blog content" style="width: 100%">
+      <div class="container mt-2" >
+          <nav class="navbar navbar-expand-lg navbar-light" style="width: 100%; height: 24px; background-color: #ff6600; padding:2px;">
+              <a class="navbar-brand" href="/">
+                  <img src="/images/y18.jpeg" width="18" height="18" style="border:1px #ffffff solid;padding-right: 0px;">
+              </a>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/submit" style="padding-left: 0px;">
+                              <td style="line-height:12px; height:10px;">
+                                  <span class="pagetop">
+                                      <b style="color: #000000;">Submit</b>
+                                  </span>
+                              </td>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+      </div>
+
+
+    <form action="/create" method="POST" style="padding-left: 213px">
+        <table style="background-color: #f6f6ef; width: 84%;">
+            <tbody>
+                <tr style="height: 10px"></tr>
+                <tr>
+                    <td style="padding-left: 50px"><label for="title">Title:</label></td>
+                    <td><input type="text" id="title" name="title" required></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px"><label for="url">URL:</label></td>
+                    <td><input type="text" id="url" name="url" required></td>
+                </tr>
+                <tr style="height: 20px"></tr>
+                <tr><td></td><td><button>Submit</button></td></tr>
+                <tr style="height: 30px"></tr>
+                <tr><td style="padding-right: 100px;"></td><td style="color:#828282">Line of text that will be implemented in a future. At the moment it's just an insignificant message</td></tr>
+                <tr style="height: 50px"></tr>
+            </tbody>
+        </table>
     </form>
   </div>
 
