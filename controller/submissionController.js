@@ -1,6 +1,5 @@
 
 const submission = require('../models/submissions');
-const ObjectId = require('mongodb').ObjectId; 
 var validUrl = require('valid-url');
 
 const mostrarIndex = async (req,res) => {
@@ -11,7 +10,7 @@ const mostrarIndex = async (req,res) => {
 }
 
 const mostrarSubmission = async (req,res) => {
-    const id = req.params.id;
+    var id = req.params.id;
     await submission.findById(id)
       .then(result => {
         res.redirect( result.url)
