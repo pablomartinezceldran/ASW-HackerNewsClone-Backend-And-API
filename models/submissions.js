@@ -4,9 +4,11 @@ const submissionScheme = new mongoose.Schema(
     {
     title:{
         type:String,
+        required:true
     },
     url:{
-        type:String
+        type:String,
+        required:true
     },
     },
     {

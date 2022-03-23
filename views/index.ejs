@@ -33,7 +33,12 @@
         <% submissions.forEach( (submission)=>{ %>
           <tr>
               <td>
-                <%= submission %> <br>
+                <%= submission.title%> y el url <%= submission.url%> <br> 
+                <li class="nav-item">
+                  <a class="nav-link" href="/<%= submission._id %>"" > <%= submission.title%></a>
+                </li>
+                <br>
+                <br>
               </td>
           </tr>
           <% }) %>
