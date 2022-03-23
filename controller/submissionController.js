@@ -19,7 +19,7 @@ const mostrarSubmission = async (req,res) => {
  }
 
  const mostrarNewest = async (req,res) => {
-    const data = await submission.find({}) //pero ordenada por data
+    const data = await submission.find().sort({createdAt: -1}) 
     res.render('index', {
         submissions: data
     })
