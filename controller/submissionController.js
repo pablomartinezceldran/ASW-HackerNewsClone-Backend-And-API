@@ -14,7 +14,9 @@ const mostrarSubmission = async (req,res) => {
     await submission.findById(id)
       .then(result => {
         res.redirect( result.url)
-      })
+      }).catch(err => {
+        res.render('error')
+      });
  }
 
  const mostrarNewest = async (req,res) => {
