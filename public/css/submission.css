@@ -27,3 +27,23 @@ a:visited { color:#828282; text-decoration:none; }
 .navFormat{
     padding:2px; width: 100%; border: 0;
 }
+
+.input{
+    width:40%;
+}
+
+.bottomSpace{
+    height: 50px;
+}
+
+.textSeparation{
+    padding-right:  100px;
+}
+
+.formTable{
+    background-color: #f6f6ef; width: 84%;
+}
+
+.label{
+   padding-left: 50px;
+}
