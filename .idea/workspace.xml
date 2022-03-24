@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/y18.jpeg" afterDir="false" />
+    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="Style del apartat submisisons">
+      <change afterPath="$PROJECT_DIR$/public/css/submission.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/newest.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/newest.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/submit.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/submit.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -63,6 +69,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/views/visuals" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -87,7 +94,16 @@
       <workItem from="1648064080513" duration="1194000" />
       <workItem from="1648068267795" duration="6323000" />
       <workItem from="1648075610577" duration="299000" />
+      <workItem from="1648075920865" duration="5573000" />
     </task>
+    <task id="LOCAL-00001" summary="Style del apartat submisisons">
+      <created>1648075950157</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1648075950157</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +122,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Style del apartat submisisons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Style del apartat submisisons" />
   </component>
 </project>
