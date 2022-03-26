@@ -12,7 +12,7 @@ router.get('/submit', submissionController.mostrarSubmissionForm);
 
 router.post('/create', submissionController.createSubmisson);
 
-router.get('/:id', submissionController.mostrarSubmission);
+router.get('/submission/:id', submissionController.mostrarSubmission);
 
 
 
