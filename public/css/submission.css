@@ -1,0 +1,49 @@
+body  { font-family:Verdana, Geneva, sans-serif; font-size:10pt; color:#828282; }
+td    { font-family:Verdana, Geneva, sans-serif; font-size:10pt; color:#828282; }
+
+a:link    { color:#000000; text-decoration:none; }
+a:visited { color:#828282; text-decoration:none; }
+
+.tdImage{
+    width:18px; padding-right:5px; padding-top:0px;
+}
+
+.tdSubmit{
+    line-height:12px; height:10px; padding-left: 0px;
+}
+
+.navText{
+    color: #000000;
+}
+
+.hdMain{
+    width: 85%; background-color: #f6f6ef; border: 0; margin-left: auto; margin-right: auto;
+}
+
+.tableColor{
+    background-color: #ff6600;
+}
+
+.navFormat{
+    padding:2px; width: 100%; border: 0;
+}
+
+.input{
+    width:40%;
+}
+
+.bottomSpace{
+    height: 50px;
+}
+
+.textSeparation{
+    padding-right:  100px;
+}
+
+.formTable{
+    background-color: #f6f6ef; width: 84%;
+}
+
+.label{
+   padding-left: 50px;
+}
