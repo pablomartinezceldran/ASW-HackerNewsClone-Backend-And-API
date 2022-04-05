@@ -7,41 +7,76 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="/css/navbar.css"/>
     <title>Hacker News</title>
   </head>
 
 
-  <body>
-    <div class="container mt-2">
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ff6600;">
-        <a class="navbar-brand" href="/">Hacker News</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/newest">Newest <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/submit">Submit</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-        <% submissions.forEach( (submission)=>{ %>
-          <tr>
-              <td>
-                <%= submission.title%> y el url <%= submission.url%> <br> 
-                <li class="nav-item">
-                  <a class="nav-link" href="/submission/<%= submission._id %>"" > <%= submission.title%> </a>   
-                  <%= submission.votes %> <--votes
-                </li>
-                <br>
-                <br>
-              </td>
-          </tr>
-          <% }) %>
-  </body>
-</html>
+<body>
+<table class="hdMain">
+  <tbody>
+  <tr>
+    <td class="table-color">
+      <table class="header">
+        <tbody>
+        <tr>
+          <td class="tdImage">
+            <a class="navbar-brand" href="/">
+              <img src="/images/y18.jpeg" width="18" height="18" style="border:1px #ffffff solid;padding-right: 0px;">
+            </a>
+          </td>
+          <td class = "nav-links">
+            <a class="nav-link" href="/" style="padding-left: 0px;">
+              <span class="page-top">
+                <b class="navText">Hacker News</b>
+              </span>
+            </a>
+          </td>
+          <td class = "nav-links">
+            <a class="nav-link" href="/newest" style="padding-left: 2px; padding-right: 2px;">
+              <span class="page-top">
+                <d class="navText">new</d>
+              </span>
+            </a>
+          </td>
+          <td class = "navText">
+            |
+          </td>
+          <td class = "nav-links">
+            <a class="nav-link" href="/submit" style="padding-left: 2px; padding-right: 2px;">
+              <span class="page-top">
+                <d class="navText">submit</d>
+              </span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <% var i=0 %>
+  <% submissions.forEach( (submission)=>{ %>
+    <tr>
+      <td>
+        <%= submission.title%> y el url <%= submission.url%>  <br />
+        <li class="nav-item">
+          <a class="nav-link" href="/submission/<%= submission._id %>">
+            <%= submission.title%>
+          </a>
+          <%= submission.votes %> <--votes
+          <button id='id<%= i %>x' onclick="vote('<%= submission._id %>', this.id)" >
+            Vote
+          </button>
+          <button id='id<%= i %>' onclick="unvote('<%= submission._id %>', this.id, this.id+'x')" >
+            Unvote
+          </button>
+        </li>
+        <br />
+        <br />
+      </td>
+    </tr>
+    <% i+=1 %>
+  <% }) %>
+  </tbody>
+</table>
+</body>
