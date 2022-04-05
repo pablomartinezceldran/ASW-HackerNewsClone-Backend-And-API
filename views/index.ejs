@@ -54,29 +54,44 @@
       </table>
     </td>
   </tr>
-  <% var i=0 %>
-  <% submissions.forEach( (submission)=>{ %>
-    <tr>
-      <td>
-        <%= submission.title%> y el url <%= submission.url%>  <br />
-        <li class="nav-item">
-          <a class="nav-link" href="/submission/<%= submission._id %>">
-            <%= submission.title%>
-          </a>
-          <%= submission.votes %> <--votes
-          <button id='id<%= i %>x' onclick="vote('<%= submission._id %>', this.id)" >
-            Vote
-          </button>
-          <button id='id<%= i %>' onclick="unvote('<%= submission._id %>', this.id, this.id+'x')" >
-            Unvote
-          </button>
-        </li>
-        <br />
-        <br />
-      </td>
-    </tr>
-    <% i+=1 %>
-  <% }) %>
+
+  <tr>
+    <td>
+      <table>
+        <tbody>
+          <% var i=1 %>
+          <% submissions.forEach( (submission)=>{ %>
+          <tr>
+            <td><%=i%></td>
+            <td>
+              <a class="nav-link" href="/submission/<%= submission._id %>">
+                <%= submission.title%>
+              </a>
+            </td>
+            <td>(<%= submission.url%>)</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="padding-left: 15px;">
+              <%= submission.votes %> points by author X hours ago |
+              <button id='id<%= i %>x' onclick="vote('<%= submission._id %>', this.id)" >
+                    Vote
+              </button>
+              |
+              <button id='id<%= i %>' onclick="unvote('<%= submission._id %>', this.id, this.id+'x')" >
+                    Unvote
+              </button>
+
+                <br />
+                <br />
+              </td>
+            </tr>
+            <% i+=1 %>
+          <% }) %>
+        </tbody>
+      </table>
+    </td>
+  </tr>
   </tbody>
 </table>
 </body>
