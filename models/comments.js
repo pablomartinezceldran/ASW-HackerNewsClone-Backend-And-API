@@ -9,11 +9,6 @@ const commentScheme = new mongoose.Schema(
        
     },
 
-    creation_time:{
-        type:String,
-        required: true
-    },
-
     creator:{
         type: Schema.Types.ObjectId, ref: 'users',
         required: true
