@@ -1,13 +1,28 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
 const commentScheme = new mongoose.Schema(
     {
-    name:{
+    text:{
         type:String,
+        required: true
        
     },
-    pasword:{
-        type:String
+
+    creation_time:{
+        type:String,
+        required: true
+    },
+
+    creator:{
+        type: Schema.Types.ObjectId, ref: 'users',
+        required: true
+    },
+
+    votes:{
+        type:Number,
+        required:true,
+        default: 0
     },
     
     },
