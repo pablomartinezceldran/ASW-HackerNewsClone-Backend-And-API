@@ -1,97 +1,127 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="/css/navbar.css"/>
+    <link rel="stylesheet" href="/css/navbar.css" />
     <title>Hacker News</title>
   </head>
 
-
-<body>
-<table class="hdMain">
-  <tbody>
-  <tr>
-    <td class="table-color">
-      <table class="header">
-        <tbody>
+  <body>
+    <table class="hdMain">
+      <tbody>
         <tr>
-          <td class="tdImage">
-            <a class="navbar-brand" href="/">
-              <img src="/images/y18.jpeg" width="18" height="18" style="border:1px #ffffff solid;padding-right: 0px;">
-            </a>
-          </td>
-          <td class = "nav-links">
-            <a class="nav-link" href="/" style="padding-left: 0px;">
-              <span class="page-top">
-                <b class="navText">Hacker News</b>
-              </span>
-            </a>
-          </td>
-          <td class = "nav-links">
-            <a class="nav-link" href="/newest" style="padding-left: 2px; padding-right: 2px;">
-              <span class="page-top">
-                <d class="navText">new</d>
-              </span>
-            </a>
-          </td>
-          <td class = "navText">
-            |
-          </td>
-          <td class = "nav-links">
-            <a class="nav-link" href="/submit" style="padding-left: 2px; padding-right: 2px;">
-              <span class="page-top">
-                <d class="navText">submit</d>
-              </span>
-            </a>
+          <td class="table-color">
+            <table class="header">
+              <tbody>
+                <tr>
+                  <td class="tdImage">
+                    <a class="navbar-brand" href="/">
+                      <img
+                        src="/images/y18.jpeg"
+                        width="18"
+                        height="18"
+                        style="border: 1px #ffffff solid; padding-right: 0px"
+                      />
+                    </a>
+                  </td>
+                  <td class="nav-links">
+                    <a class="nav-link" href="/" style="padding-left: 0px">
+                      <span class="page-top">
+                        <b class="navText">Hacker News</b>
+                      </span>
+                    </a>
+                  </td>
+                  <td class="nav-links">
+                    <a
+                      class="nav-link"
+                      href="/newest"
+                      style="padding-left: 2px; padding-right: 2px"
+                    >
+                      <span class="page-top">
+                        <d class="navText">new</d>
+                      </span>
+                    </a>
+                  </td>
+                  <td class="navText">|</td>
+                  <td class="nav-links">
+                    <a
+                      class="nav-link"
+                      href="/submit"
+                      style="padding-left: 2px; padding-right: 2px"
+                    >
+                      <span class="page-top">
+                        <d class="navText">submit</d>
+                      </span>
+                    </a>
+                  </td>
+                  <td class="navText">|</td>
+                  <td class="nav-links">
+                    <a
+                      class="nav-link"
+                      href="/login"
+                      style="padding-left: 2px; padding-right: 2px"
+                    >
+                      <span class="page-top">
+                        <d class="navText">login</d>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </td>
         </tr>
-        </tbody>
-      </table>
-    </td>
-  </tr>
 
-  <tr>
-    <td>
-      <table>
-        <tbody>
-          <% var i=1 %>
-          <% submissions.forEach( (submission)=>{ %>
-          <tr>
-            <td><%=i%></td>
-            <td>
-              <a class="nav-link" href="/submission/<%= submission._id %>">
-                <%= submission.title%>
-              </a>
-            </td>
-            <td>(<%= submission.url%>)</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td style="padding-left: 15px;">
-              <%= submission.votes %> points by author X hours ago |
-              <button id='id<%= i %>x' onclick="vote('<%= submission._id %>', this.id)" >
-                    Vote
-              </button>
-              |
-              <button id='id<%= i %>' onclick="unvote('<%= submission._id %>', this.id, this.id+'x')" >
-                    Unvote
-              </button>
+        <tr>
+          <td>
+            <table>
+              <tbody>
+                <% var i=1 %> <% submissions.forEach( (submission)=>{ %>
+                <tr>
+                  <td><%=i%></td>
+                  <td>
+                    <a
+                      class="nav-link"
+                      href="/submission/<%= submission._id %>"
+                    >
+                      <%= submission.title%>
+                    </a>
+                  </td>
+                  <td>(<%= submission.url%>)</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td style="padding-left: 15px">
+                    <%= submission.votes %> points by author X hours ago |
+                    <button
+                      id="id<%= i %>x"
+                      onclick="vote('<%= submission._id %>', this.id)"
+                    >
+                      Vote
+                    </button>
+                    |
+                    <button
+                      id="id<%= i %>"
+                      onclick="unvote('<%= submission._id %>', this.id, this.id+'x')"
+                    >
+                      Unvote
+                    </button>
 
-                <br />
-                <br />
-              </td>
-            </tr>
-            <% i+=1 %>
-          <% }) %>
-        </tbody>
-      </table>
-    </td>
-  </tr>
-  </tbody>
-</table>
-</body>
+                    <br />
+                    <br />
+                  </td>
+                </tr>
+                <% i+=1 %> <% }) %>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
