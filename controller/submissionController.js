@@ -40,6 +40,8 @@ const createSubmisson =  async (req,res) => {
         })
     } else{
          res.render('submit', { errorMessage: 'El texto introducido no es una URL' });
+         // https://stackoverflow.com/questions/46906876/how-to-preserve-form-data-when-error-generate-on-nodejs-express
+        // por si queremos que el form no se reinicie en el error
          console.log('no es un url')
         }
 }
