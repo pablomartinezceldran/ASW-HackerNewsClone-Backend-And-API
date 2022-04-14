@@ -1,4 +1,4 @@
-const { render } = require("../app");
+
 const User = require("../models/user");
 
 const mostrarFormLogin = async (req, res) => {
