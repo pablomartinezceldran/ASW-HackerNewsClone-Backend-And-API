@@ -39,7 +39,7 @@ const createSubmisson =  async (req,res) => {
         res.redirect('/');
         })
     } else{
-         res.render('submit') 
+         res.render('submit', { errorMessage: 'El texto introducido no es una URL' });
          console.log('no es un url')
         }
 }

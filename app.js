@@ -6,6 +6,8 @@ const path =  require('path');
 const session = require('express-session');
 const dbConnect  = require('./config/mongo')
 
+const flash = require('connect-flash');
+
 app.use(cors())
 
 
@@ -26,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //ESTABLECEMOS LAS RUTAS
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 
 
 // // catch 404 and forward to error handler
