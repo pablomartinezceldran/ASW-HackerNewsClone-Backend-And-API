@@ -26,9 +26,25 @@ const createUser =  async (req,res) => {
     }); 
   };
 
+const  iniciaSessio =  async (req,res) => {
+    const { username,  password } = req.body;
+       User.findOne({ username: username }).then((user) => {
+        if (user && JSON.stringify(user.password) === JSON.stringify(password)) {
+          req.session.loggedin = true;
+				  req.session.user = user;
+          
+          res.render('login', { errorMessage: 'oleee pero falta implementar la session' });
+
+        } else {
+          res.render('login', { errorMessage: 'Usuario i/o contraseña incorectos' });
+        }
+        
+      }); 
+    };
 
 module.exports = {
   mostrarFormLogin,
   createUser,
-  mostrarFormSignin
+  mostrarFormSignin,
+  iniciaSessio
 };

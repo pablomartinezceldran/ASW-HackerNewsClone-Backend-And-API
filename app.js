@@ -1,4 +1,4 @@
-
+//SETUP
 const express = require('express')
 const cors = require('cors')
 const app = express()
@@ -6,9 +6,20 @@ const path =  require('path');
 const session = require('express-session');
 const dbConnect  = require('./config/mongo')
 
-const flash = require('connect-flash');
 
+
+//X si aca
+const flash = require('connect-flash');
 app.use(cors())
+
+
+//session
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
 
 
 //GUARDAMOS LAS RUTAS
@@ -36,7 +47,6 @@ app.use('/', usersRouter);
    next(createError(404));
  });
 
-
  // error handler
  app.use(function(err, req, res, next) {
    // set locals, only providing error in development
@@ -48,14 +58,15 @@ app.use('/', usersRouter);
  res.render('error');
 }); 
 
+
+//Conexion a Base de Datos
 dbConnect();
 
-// //APP LOCAL
- module.exports = app;
+//APP LOCAL
+module.exports = app;
+
+//Puertos
 const port = 3000;
-
-
-
 app.listen(port, () =>{
 
     console.log('Listening on port 3000');
