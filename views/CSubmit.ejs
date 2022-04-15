@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet"  href="/css/submission.css">
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <title>Comment Submit</title>
+</head>
+
+<body>
+<table class="hdMain">
+    <tbody>
+    <tr>
+        <td class="table-color">
+            <table class="header">
+                <tbody>
+                <tr>
+                    <td class="tdImage">
+                        <a class="navbar-brand" href="/">
+                            <img src="/images/y18.jpeg" width="18" height="18" style="border:1px #ffffff solid;padding-right: 0px;">
+                        </a>
+                    </td>
+                    <td class = "nav-links">
+                        <a class="nav-link" href="/" style="padding-left: 0px;">
+                            <span class="page-top">
+                                <b class="navText">Submit</b>
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form action="/C_create" method="POST" >
+                <table class="formTable">
+                    <tbody>
+                    <tr style="height: 10px"></tr>
+                    <tr>
+                        <td class="label"><label for="text">Text:</label></td>
+                        <td><input type="text" id="text" name="text" required class="input"></td>
+                    </tr>
+                    <tr style="height: 20px"></tr>
+                    <tr><td></td><td><button class="btn btn-secondary btn-sm">Submit</button></td></tr>
+                    <tr style="height: 30px"></tr>
+                    <tr><td class="textSeparation"></td><td>Line of text that will be implemented in a future. At the moment it's just an insignificant message</td></tr>
+                    <tr class="bottomSpace"></tr>
+                    </tbody>
+                </table>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>

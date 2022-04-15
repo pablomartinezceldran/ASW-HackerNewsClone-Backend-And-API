@@ -6,12 +6,6 @@ const commentScheme = new mongoose.Schema(
     text:{
         type:String,
         required: true
-       
-    },
-
-    creator:{
-        type: Schema.Types.ObjectId, ref: 'users',
-        required: true
     },
 
     votes:{

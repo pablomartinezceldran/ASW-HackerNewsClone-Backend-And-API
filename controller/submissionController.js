@@ -1,6 +1,5 @@
-
 const submission = require('../models/submissions');
-var validUrl = require('valid-url');
+const validUrl = require('valid-url');
 
 const mostrarIndex = async (req,res) => {
     const data = await submission.find({}) // preo ordenada por likes
@@ -10,13 +9,12 @@ const mostrarIndex = async (req,res) => {
 }
 
 const mostrarSubmission = async (req,res) => {
-    var id = req.params.id;
-    await submission.findById(id)
-      .then(result => {
-        res.redirect( result.url)
-      }).catch(err => {
-        res.render('error')
-      });
+    const id = req.params.id;
+    const data = await submission.findById(id)
+    console.log(data)
+        res.render('submission', {
+            subtree: data
+          })
  }
 
  const mostrarNewest = async (req,res) => {

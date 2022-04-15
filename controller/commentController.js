@@ -1,7 +1,7 @@
-const comment = require('../models/comments');
-const validUrl = require("valid-url");
 
-const createSubmisson =  async (req,res) => {
+const comment = require('../models/comments');
+
+const createComment =  async (req,res) => {
     const com = new comment(req.body);
     com.save().then(result => {
         res.redirect('/')
@@ -10,7 +10,17 @@ const createSubmisson =  async (req,res) => {
 
 const mostrarNewestComment = async (req,res) => {
     const data = await comment.find().sort({createdAt: -1})
-    res.render('newest', {
-        comment: data
+    res.render('comments', {
+        comments: data
     })
+}
+
+const mostrarCommentForm = (req,res) => {
+    res.render('CSubmit')
+}
+
+module.exports ={
+    createComment,
+    mostrarNewestComment,
+    mostrarCommentForm
 }
