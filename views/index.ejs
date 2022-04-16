@@ -60,6 +60,7 @@
                     </a>
                   </td>
                   <td class="navText">|</td>
+                  <%if(!session.user){ %>
                   <td class="nav-links">
                     <a
                       class="nav-link"
@@ -68,6 +69,31 @@
                     >
                       <span class="page-top">
                         <d class="navText">login</d>
+                      </span>
+                    </a>
+                  </td>
+                    <%}else {%>
+                      <td class="nav-links">
+                        <a
+                          class="nav-link"
+                          href="/user/<%=session.user.username%>"
+                          style="padding-left: 2px; padding-right: 2px"
+                        >
+                          <span class="page-top">
+                            <d class="navText"><%=session.user.username%></d>
+                          </span>
+                        </a>
+                      </td>
+                      <%}%>
+                  <td class="navText">|</td>
+                  <td class="nav-links">
+                    <a
+                      class="nav-link"
+                      href="/logout"
+                      style="padding-left: 2px; padding-right: 2px"
+                    >
+                      <span class="page-top">
+                        <d class="navText">logout</d>
                       </span>
                     </a>
                   </td>

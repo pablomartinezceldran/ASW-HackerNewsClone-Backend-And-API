@@ -8,30 +8,73 @@
   </head>
   <body>
     <td class="nav-links">
-      <a class="nav-link" href="/" style="padding-left: 0px">
-        <span class="page-top">
-          <b class="navText">Home Page</b>
-        </span>
-      </a>
-    </td>
-    <form class="login">
-      <h2>Login</h2>
-      <label for="username">Username:</label><br />
-      <input type="text" id="username" name="username" /><br />
-      <label for="pwd">Password:</label><br />
-      <input type="password" id="pwd" name="pwd" /><br />
-      <input type="submit" />
-      <br />
-      <br />
+        <a class="nav-link" href="/" style="padding-left: 0px">
+          <span class="page-top">
+            <b class="navText">Home Page</b>
+          </span>
+        </a>
+      </td>
+      <br>
+      <br>
+      <h2>Log in</h2>
+    </form>
+    <br />
+    <form action="/login" method="POST">
+      <table class="formTable">
+        <tbody>
+          <tr style="height: 10px"></tr>
+          <td class="label"><label for="username">Username:</label> <br /></td>
+          <td>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              class="input"
+            />
+          </td>
+
+          <tr>
+            <td class="label"><label for="password">Password:</label><br /></td>
+            <td>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                required
+                class="input"
+              />
+            </td>
+          </tr>
+          <tr style="height: 20px"></tr>
+          <tr>
+            <td></td>
+            <td>
+              <button>Log in</button>
+            </td>
+          </tr>
+          <tr style="height: 30px"></tr>
+          <tr>
+            <td class="textSeparation"></td>
+            <td>
+              <% if (typeof errorMessage !== "undefined") { %>
+              <p><%= errorMessage %></p>
+              <% } %>
+            </td>
+          </tr>
+          <tr class="bottomSpace"></tr>
+        </tbody>
+      </table>
     </form>
     <br /><br /><br />
     <td class="nav-links">
       No estas registrado? Prueba
-      <a class="nav-link" href="/signin" style="padding-left: 0px">
+      <a class="nav-link" href="/signup" style="padding-left: 0px">
         <span class="page-top">
-          <b class="navText">Signin</b>
+          <b class="navText">Signup</b>
         </span>
       </a>
     </td>
   </body>
 </html>
+
