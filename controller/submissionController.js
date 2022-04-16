@@ -5,6 +5,7 @@ const mostrarIndex = async (req, res) => {
   const data = await submission.find({}); // preo ordenada por likes
   res.render("index", {
     submissions: data,
+    session: req.session
   });
 };
 

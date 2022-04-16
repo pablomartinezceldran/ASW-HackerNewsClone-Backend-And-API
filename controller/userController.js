@@ -48,10 +48,25 @@ const tancarSessio = async (req, res) => {
   res.redirect("/");
 };
 
+
+const mostrarUser = async (req, res) => {
+  var id = req.params.id;
+  console.log("aaaaaaaaaaaaaaaaaa");
+  await User.find({username: id})
+    .then((user) => {
+      console.log("-------------------");
+      res.render("user", {
+      user: user,
+      session: req.session
+  });
+    })
+};
+
 module.exports = {
   mostrarFormLogin,
   createUser,
   mostrarFormSignup,
   iniciaSessio,
   tancarSessio,
+  mostrarUser
 };
