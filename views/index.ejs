@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <title>Hacker News</title>
   </head>
+  <script>
+    function vote(msj, id) {
+      document.getElementById(id).disabled = true;
+      const Http = new XMLHttpRequest();
+      const url = "/like/" + msj;
+      Http.open("POST", url);
+      Http.send();
+    }
+    function unvote(msj, id, id2) {
+      document.getElementById(id2).disabled = false;
+      const Http = new XMLHttpRequest();
+      const url = "/unlike/" + msj;
+      Http.open("POST", url);
+      Http.send();
+    }
+  </script>
 
   <body>
     <table class="hdMain">
@@ -72,19 +88,19 @@
                       </span>
                     </a>
                   </td>
-                    <%}else {%>
-                      <td class="nav-links">
-                        <a
-                          class="nav-link"
-                          href="/user/<%=session.user.username%>"
-                          style="padding-left: 2px; padding-right: 2px"
-                        >
-                          <span class="page-top">
-                            <d class="navText"><%=session.user.username%></d>
-                          </span>
-                        </a>
-                      </td>
-                      <%}%>
+                  <%}else {%>
+                  <td class="nav-links">
+                    <a
+                      class="nav-link"
+                      href="/user/<%=session.user.username%>"
+                      style="padding-left: 2px; padding-right: 2px"
+                    >
+                      <span class="page-top">
+                        <d class="navText"><%=session.user.username%></d>
+                      </span>
+                    </a>
+                  </td>
+                  <%}%>
                   <td class="navText">|</td>
                   <td class="nav-links">
                     <a
