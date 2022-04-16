@@ -1,15 +1,24 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 const userController = require("../controller/userController");
 
+const loggedIn = (req, res, next) => {
+  if (req.session.user) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+};
 
-router.get("/login", userController.mostrarFormLogin);
+router.get("/login", loggedIn, userController.mostrarFormLogin);
 
-router.post("/login", userController.iniciaSessio);
+router.get("/logout", userController.tancarSessio);
 
-router.get("/signin", userController.mostrarFormSignin);
+router.post("/login", loggedIn, userController.iniciaSessio);
 
-router.post("/signin", userController.createUser);
+router.get("/signup", loggedIn, userController.mostrarFormSignup);
+
+router.post("/signup", loggedIn, userController.createUser);
 
 module.exports = router;
