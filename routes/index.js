@@ -25,4 +25,12 @@ router.post("/submit", submissionController.createSubmisson);
 
 router.get("/submission/:id", submissionController.mostrarSubmission);
 
+router.post('/like/:id', submissionController.donalike);
+
+router.post('/unlike/:id', submissionController.treulike);
+
+
+
+
+
 module.exports = router;

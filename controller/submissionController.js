@@ -1,8 +1,15 @@
 const submission = require("../models/submissions");
+const User = require("../models/user");
 var validUrl = require("valid-url");
 
 const mostrarIndex = async (req, res) => {
-  const data = await submission.find({}); // preo ordenada por likes
+  let data = await submission.find({}); // preo ordenada por likes
+  for(sub of data){   
+    if(sub.user){
+      const user = await User.findOne({"_id": sub.user})
+      sub.username = user.username
+    } else sub.username ="undefined"
+  }
   res.render("index", {
     submissions: data,
     session: req.session
@@ -33,8 +40,9 @@ const mostrarSubmissionForm = (req, res) => {
 };
 
 const createSubmisson = async (req, res) => {
-  const sub = new submission(req.body);
+  const sub = new submission ({ url: req.body.url, title: req.body.title, user: req.session.user});
   if (validUrl.isUri(sub.url)) {
+
     sub.save().then((result) => {
       res.redirect("/");
     });
@@ -44,9 +52,35 @@ const createSubmisson = async (req, res) => {
     });
     // https://stackoverflow.com/questions/46906876/how-to-preserve-form-data-when-error-generate-on-nodejs-express
     // por si queremos que el form no se reinicie en el error
-    console.log("no es un url");
   }
 };
+
+
+
+const donalike = async (req,res) => {
+  var id = req.params.id;
+  console.log("--------------------------------------------");
+  await submission.findById(id)
+    .then(result => {
+      result.votes+=1
+      result.save()
+      res.redirect('/')
+    }).catch(err => {
+      res.render('error')
+    });
+}
+
+const treulike = async (req,res) => {
+  var id = req.params.id;
+  await submission.findById(id)
+    .then(result => {
+      result.votes-=1
+      result.save()
+      res.redirect('/')
+    }).catch(err => {
+      res.render('error')
+    });
+}
 
 const upddateSubmisson = (req, res) => {};
 
@@ -58,4 +92,6 @@ module.exports = {
   mostrarNewest,
   mostrarSubmissionForm,
   createSubmisson,
+  donalike,
+  treulike
 };
