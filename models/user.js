@@ -9,7 +9,12 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  likedsubmissions: [{
+    type: mongoose.Schema.Types.ObjectId, 
+        ref: 'submissions',
+        default: null
+  }],
+  
   date: {
     type: Date,
     default: Date.now,
