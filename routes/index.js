@@ -5,6 +5,7 @@ const submissionController = require("../controller/submissionController");
 
 const redirectLogin = (req, res, next) => {
   if (!req.session.user) {
+    console.log('xdddd');
     res.redirect("/login");
   } else {
     next();
@@ -25,9 +26,9 @@ router.post("/submit", submissionController.createSubmisson);
 
 router.get("/submission/:id", submissionController.mostrarSubmission);
 
-router.post('/like/:id', submissionController.donalike);
+router.post('/like/:id', redirectLogin, submissionController.donalike);
 
-router.post('/unlike/:id', submissionController.treulike);
+router.post('/unlike/:id', redirectLogin, submissionController.treulike);
 
 
 

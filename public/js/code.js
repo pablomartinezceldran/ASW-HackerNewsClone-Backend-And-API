@@ -1,6 +1,7 @@
 
 
     function vote(msj, id) {
+      console.log("a");
       document.getElementById(id).disabled = true;
       const Http = new XMLHttpRequest();
       const url = "/like/" + msj;

@@ -3,7 +3,7 @@ const User = require("../models/user");
 var validUrl = require("valid-url");
 
 const mostrarIndex = async (req, res) => {
-  let data = await submission.find({}); // preo ordenada por likes
+  let data = await submission.find().sort({ votes: -1 });
   for(sub of data){   
     if(sub.user){
       const user = await User.findOne({"_id": sub.user})
@@ -58,12 +58,15 @@ const createSubmisson = async (req, res) => {
 
 
 const donalike = async (req,res) => {
-  var id = req.params.id;
-  console.log("--------------------------------------------");
+  const id = req.params.id;
+  let u = req.session.user;
   await submission.findById(id)
-    .then(result => {
+    .then ( async result => {
+      await User.updateOne({"_id": u._id},{$push: {likedsubmissions: id}})
       result.votes+=1
       result.save()
+      req.session.user.likedsubmissions.push(id)
+      console.log("sumado");
       res.redirect('/')
     }).catch(err => {
       res.render('error')
@@ -71,11 +74,16 @@ const donalike = async (req,res) => {
 }
 
 const treulike = async (req,res) => {
-  var id = req.params.id;
+  const id = req.params.id;
+  let u = req.session.user;
   await submission.findById(id)
-    .then(result => {
+    .then ( async result => {
+      await User.updateOne({"_id": u._id},{$pull: {likedsubmissions: id}})
       result.votes-=1
       result.save()
+      console.log("sumado1");
+      req.session.user.likedsubmissions.splice(req.session.user.likedsubmissions.indexOf(id), 1)
+      console.log('noooo')
       res.redirect('/')
     }).catch(err => {
       res.render('error')

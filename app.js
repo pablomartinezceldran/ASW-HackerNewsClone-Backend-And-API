@@ -6,16 +6,16 @@ const path = require("path");
 const session = require("express-session");
 const dbConnect = require("./config/mongo");
 
-/* const submission = require("./models/submissions");
+/*  const submission = require("./models/submissions");
 function renameCreatorField() {
-  submission.updateMany({}, { $set: { user : null } }, { multi: true }, function(err, data) {
+  submission.updateMany({}, { $set: { likedsubmissions : [] } }, { multi: true }, function(err, data) {
       if (!err) { 
           //success 
       }
   })
 }
 
-renameCreatorField(); */
+renameCreatorField();  */
 
 //X si aca
 const flash = require("connect-flash");
