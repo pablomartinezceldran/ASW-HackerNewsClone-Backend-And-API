@@ -29,9 +29,16 @@ const mostrarSubmission = async (req, res) => {
 };
 
 const mostrarNewest = async (req, res) => {
-  const data = await submission.find().sort({ createdAt: -1 });
+  let data = await submission.find().sort({ createdAt: -1 });
+  for(sub of data){   
+    if(sub.user){
+      const user = await User.findOne({"_id": sub.user})
+      sub.username = user.username
+    } else sub.username ="undefined"
+  }
   res.render("newest", {
     submissions: data,
+    session: req.session
   });
 };
 
