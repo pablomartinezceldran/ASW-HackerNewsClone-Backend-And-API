@@ -13,8 +13,10 @@
 
 <body>
 <script>
-  function vote(msj, id) {
+  function vote(msj, id, id2) {
     document.getElementById(id).disabled = true;
+    document.getElementById(id).style.visibility="hidden";
+    document.getElementById(id2).style.visibility="visible";
     const Http = new XMLHttpRequest();
     const url = "/like/" + msj;
     Http.open("POST", url);
@@ -22,6 +24,8 @@
   }
   function unvote(msj, id, id2) {
     document.getElementById(id2).disabled = false;
+    document.getElementById(id2).style.visibility="visible";
+    document.getElementById(id).style.visibility="hidden";
     const Http = new XMLHttpRequest();
     const url = "/unlike/" + msj;
     Http.open("POST", url);
@@ -152,31 +156,28 @@
         <tr>
           <td><%=i%></td>
           <td>
-            <a
-                    class="nav-link"
-                    href="/submission/<%= submission._id %>"
-            >
-              <%= submission.title%>
-            </a>
+            <button  style="border:none; background-color: transparent;" id="id<%= i %>x" onclick="vote('<%= submission._id %>', this.id, 'id<%= i %>')">
+              <img src="/images/triangle.png" width="8" height="8" >
+            </button>
           </td>
-          <td>(<%= submission.url%>)</td>
+          <td style="padding-left: 15px">
+            <p>
+              <a  href="/submission/<%= submission._id %>">
+                <%= submission.title%>
+              </a>
+              (<%= submission.url%>)</p>
+          </td>
         </tr>
         <tr>
+          <td></td>
           <td></td>
           <td style="padding-left: 15px">
             <%= submission.votes %> points | by
             <a href="/user/<%= submission.username%>"
-            ><%= submission.username%></a
-            >
+            ><%= submission.username%></a>
             at <%=submission.createdAt%> %>
-            <button
-                    id="id<%= i %>x"
-                    onclick="vote('<%= submission._id %>', this.id)"
-            >
-              Vote
-            </button>
             |
-            <button
+            <button style="border:none; background-color: transparent; color:#828282"
                     id="id<%= i %>"
                     onclick="unvote('<%= submission._id %>', this.id, this.id+'x')"
             >
