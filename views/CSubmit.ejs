@@ -39,12 +39,13 @@
     </tr>
     <tr>
         <td>
-            <form action="/C_create" method="POST" >
+            <form action="/submission/:id" method="POST" >
                 <table class="formTable">
                     <tbody>
                     <tr style="height: 10px"></tr>
                     <tr>
-                        <td class="label"><label for="text">Text:</label></td>
+                        <td class="label"><label for="text">Comentari:</label></td>
+                        <td><input type="text" id="text" name="text" required class="input"></td>
                         <td><input type="text" id="text" name="text" required class="input"></td>
                     </tr>
                     <tr style="height: 20px"></tr>

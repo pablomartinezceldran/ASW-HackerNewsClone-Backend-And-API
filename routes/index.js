@@ -17,7 +17,7 @@ router.get('/submission/:id', submissionController.mostrarSubmission);
 
 router.get('/comments', commentController.mostrarNewestComment);
 
-router.post('/C_create', commentController.createComment);
+router.post('/submission/:id', commentController.createComment);
 
 router.get('/CSubmit', commentController.mostrarCommentForm);
 

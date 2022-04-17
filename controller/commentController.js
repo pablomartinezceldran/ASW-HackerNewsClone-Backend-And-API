@@ -9,18 +9,25 @@ const createComment =  async (req,res) => {
 }
 
 const mostrarNewestComment = async (req,res) => {
-    const data = await comment.find().sort({createdAt: -1})
+    return comment.find().sort({createdAt: -1});
+}
+
+const mostrarPerSubmission = async (req,res) => {
+    const id = req.params.id;
+    const data = await comment.find({submissionId: id})
     res.render('comments', {
         comments: data
     })
 }
 
 const mostrarCommentForm = (req,res) => {
+    console.log("Hola")
     res.render('CSubmit')
 }
 
 module.exports ={
     createComment,
     mostrarNewestComment,
-    mostrarCommentForm
+    mostrarCommentForm,
+    mostrarPerSubmission
 }

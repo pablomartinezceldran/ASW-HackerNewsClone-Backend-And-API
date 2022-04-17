@@ -1,5 +1,7 @@
 const submission = require('../models/submissions');
+const comment = require('../models/comments');
 const validUrl = require('valid-url');
+const {mostrarNewestComment} = require("./commentController");
 
 const mostrarIndex = async (req,res) => {
     const data = await submission.find({}) // preo ordenada por likes
@@ -9,8 +11,8 @@ const mostrarIndex = async (req,res) => {
 }
 
 const mostrarSubmission = async (req,res) => {
-    const id = req.params.id;
-    const data = await submission.findById(id)
+    const id = req.params.id
+    let data = await submission.findById(id)
     console.log(data)
         res.render('submission', {
             subtree: data

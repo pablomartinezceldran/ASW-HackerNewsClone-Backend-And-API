@@ -59,6 +59,26 @@
             <a><%= subtree.url%></a>
         </td>
     </tr>
+    <tr>
+        <td>
+            <form action="/submission/:id" method="POST" >
+                <table class="formTable">
+                    <tbody>
+                    <tr style="height: 10px"></tr>
+                    <tr>
+                        <td class="label"><label for="text">Comentari:</label></td>
+                        <td><input type="text" id="text" name="text" required class="input"></td>
+                        <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= subtree.id%>"></td>
+                    </tr>
+                    <tr style="height: 20px"></tr>
+                    <tr><td></td><td><button class="btn btn-secondary btn-sm">Submit</button></td></tr>
+                    <tr style="height: 30px"></tr>
+                    <tr class="bottomSpace"></tr>
+                    </tbody>
+                </table>
+            </form>
+        </td>
+    </tr>
     </tbody>
 </table>
 </body>
