@@ -15,6 +15,12 @@ const submissionScheme = new mongoose.Schema(
         required:true,
         default: 0
     },
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'user',
+        required: true,
+        default: null
+    },
     },
     {
         timestamps:true,
