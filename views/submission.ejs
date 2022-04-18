@@ -79,6 +79,14 @@
             </form>
         </td>
     </tr>
+    <% comments.forEach( (comment)=>{ %>
+        <tr>
+            <td>
+                <%= comment.text%> <br>
+                <br>
+            </td>
+        </tr>
+    <% }) %>
     </tbody>
 </table>
 </body>

@@ -1,4 +1,5 @@
 const submission = require("../models/submissions");
+const comment = require("../models/comments");
 const User = require("../models/user");
 var validUrl = require("valid-url");
 
@@ -27,6 +28,16 @@ const mostrarSubmission = async (req, res) => {
       res.render("error");
     });
 };
+
+const mostrarSubmissionTree = async (req,res) => {
+  const id = req.params.id
+  let data = await submission.findById(id)
+  let data2 = await comment.find({submissionId: id});
+  res.render('submission', {
+    subtree: data,
+    comments: data2
+  })
+}
 
 const mostrarNewest = async (req, res) => {
   let data = await submission.find().sort({ createdAt: -1 });
@@ -108,5 +119,6 @@ module.exports = {
   mostrarSubmissionForm,
   createSubmisson,
   donalike,
-  treulike
+  treulike,
+  mostrarSubmissionTree
 };
