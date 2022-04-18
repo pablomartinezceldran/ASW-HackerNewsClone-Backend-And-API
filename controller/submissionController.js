@@ -32,8 +32,17 @@ const mostrarSubmission = async (req, res) => {
 async function afegirComentaris(id, sub_id) {
   var array = [];
   let reply = await comment.find({submissionId: sub_id, ParentId: id});
-  array.push(reply[0])
-  return array
+  if(reply == null){
+    let coment = await comment.findOne({"_id" : id});
+    array.push(coment)
+    return array
+  }
+  else{
+    var con = Object.keys(reply).length;
+    for(var i = 0; i < con; i++){
+       return await afegirComentaris(reply[i], sub_id);
+    }
+  }
 }
 
 const mostrarSubmissionTree = async (req,res) => {
