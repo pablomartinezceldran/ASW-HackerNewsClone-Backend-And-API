@@ -1,4 +1,5 @@
 const submission = require("../models/submissions");
+const comment = require("../models/comments");
 const User = require("../models/user");
 var validUrl = require("valid-url");
 
@@ -27,6 +28,50 @@ const mostrarSubmission = async (req, res) => {
       res.render("error");
     });
 };
+
+async function afegirComentaris(id, sub_id) {
+  var array = [];
+  let reply = await comment.find({submissionId: sub_id, ParentId: id});
+  //console.log(reply[0]);
+  if(reply == null){
+    return array
+  }
+
+  else{
+    var con = Object.keys(reply).length;
+    for(var i = 0; i < con; i++){
+      var temp = [];
+      temp = await afegirComentaris(reply[i].id, sub_id);
+      console.log(reply[i].id);
+       array.push(reply[i]);
+       var long = temp.length;
+       for (var j = 0; j < long; j++) {
+         array.push(temp[j]);
+       }
+    }
+    return array;
+   }
+}
+
+const mostrarSubmissionTree = async (req,res) => {
+  const sub_id = req.params.id
+  let data = await submission.findById(sub_id)
+  let data2 = await comment.find({submissionId: sub_id, ParentId: null});
+  var array = [];
+  var count = Object.keys(data2).length;
+  for (var i = 0; i < count; i++){
+    array.push(data2[i]);
+    var temp = [];
+    temp = await afegirComentaris(data2[i].id, sub_id);
+    for (var j = 0; j < temp.length; j++) {
+      array.push(temp[j]);
+    }
+  }
+  res.render('submission', {
+    subtree: data,
+    comments: array
+  })
+}
 
 const mostrarNewest = async (req, res) => {
   let data = await submission.find().sort({ createdAt: -1 });
@@ -108,5 +153,6 @@ module.exports = {
   mostrarSubmissionForm,
   createSubmisson,
   donalike,
-  treulike
+  treulike,
+  mostrarSubmissionTree
 };

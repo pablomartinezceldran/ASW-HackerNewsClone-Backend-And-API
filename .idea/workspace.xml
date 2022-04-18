@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="Style with separation of Html and CSS">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="Creation of the controllers and starting the creation of the submission tree view">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/commentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/commentController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/submissionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/submissionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/submissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/submissions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/CSubmit.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CSubmit.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/submission.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/submission.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="indexRevision" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,7 +78,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/visuals" />
+    <property name="javascript.nodejs.core.library.configured.version" value="17.8.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="17.0.24" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -82,6 +92,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marcc\WebstormProjects\ProyectoASW-Hacker-News\views" />
       <recent name="C:\Users\gecas\WebstormProjects\ProyectoASW-Hacker-News\views\visuals" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -105,6 +116,8 @@
       <workItem from="1648120847745" duration="10000" />
       <workItem from="1648232538858" duration="211000" />
       <workItem from="1648288976197" duration="321000" />
+      <workItem from="1650014921009" duration="4782000" />
+      <workItem from="1650030395979" duration="11956000" />
     </task>
     <task id="LOCAL-00001" summary="Style del apartat submisisons">
       <created>1648075950157</created>
@@ -127,12 +140,12 @@
       <option name="project" value="LOCAL" />
       <updated>1648111062828</updated>
     </task>
-    <task id="LOCAL-00004" summary="Style with separation of Html and CSS">
-      <created>1650210514935</created>
+    <task id="LOCAL-00004" summary="Creation of the controllers and starting the creation of the submission tree view">
+      <created>1650037640368</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1650210514935</updated>
+      <updated>1650037640368</updated>
     </task>
     <option name="localTasksCounter" value="5" />
     <servers />
@@ -155,6 +168,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Style del apartat submisisons" />
     <MESSAGE value="Style with separation of Html and CSS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Style with separation of Html and CSS" />
+    <MESSAGE value="Creation of the controllers and starting the creation of the submission tree view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creation of the controllers and starting the creation of the submission tree view" />
   </component>
 </project>
