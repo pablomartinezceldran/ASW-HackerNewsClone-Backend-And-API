@@ -1,23 +1,26 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
 
 const submissionScheme = new mongoose.Schema(
     {
-        title:{
-            type:String,
-            required:true
-        },
-        url:{
-            type:String,
-            required:true
-        },
-
-        votes:{
-            type:Number,
-            required:true,
-            default: 0
-        },
-
+    title:{
+        type:String,
+        required:true
+    },
+    url:{
+        type:String,
+        required:true
+    },
+    votes:{
+        type:Number,
+        required:true,
+        default: 0
+    },
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'user',
+        required: true,
+        default: null
+    },
     },
     {
         timestamps:true,
