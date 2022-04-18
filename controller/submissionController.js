@@ -32,17 +32,25 @@ const mostrarSubmission = async (req, res) => {
 async function afegirComentaris(id, sub_id) {
   var array = [];
   let reply = await comment.find({submissionId: sub_id, ParentId: id});
+  //console.log(reply[0]);
   if(reply == null){
-    let coment = await comment.findOne({"_id" : id});
-    array.push(coment)
     return array
   }
+
   else{
     var con = Object.keys(reply).length;
     for(var i = 0; i < con; i++){
-       return await afegirComentaris(reply[i], sub_id);
+      var temp = [];
+      temp = await afegirComentaris(reply[i].id, sub_id);
+      console.log(reply[i].id);
+       array.push(reply[i]);
+       var long = temp.length;
+       for (var j = 0; j < long; j++) {
+         array.push(temp[j]);
+       }
     }
-  }
+    return array;
+   }
 }
 
 const mostrarSubmissionTree = async (req,res) => {
@@ -51,13 +59,14 @@ const mostrarSubmissionTree = async (req,res) => {
   let data2 = await comment.find({submissionId: sub_id, ParentId: null});
   var array = [];
   var count = Object.keys(data2).length;
-  array.push(data2[0]);
-  var temp = [];
-  temp = await afegirComentaris(data2[0].id, sub_id);
-  array.push(temp[0]);
-  array.push(data2[1]);
-  //array.concat(temp);
-  console.log(array);
+  for (var i = 0; i < count; i++){
+    array.push(data2[i]);
+    var temp = [];
+    temp = await afegirComentaris(data2[i].id, sub_id);
+    for (var j = 0; j < temp.length; j++) {
+      array.push(temp[j]);
+    }
+  }
   res.render('submission', {
     subtree: data,
     comments: array
