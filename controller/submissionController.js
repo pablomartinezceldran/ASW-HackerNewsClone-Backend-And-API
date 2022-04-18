@@ -45,11 +45,13 @@ const mostrarSubmissionTree = async (req,res) => {
   array.push(data2[0]);
   var temp = [];
   temp = await afegirComentaris(data2[0].id, sub_id);
-  array.concat(temp);
-  console.log(temp);
+  array.push(temp[0]);
+  array.push(data2[1]);
+  //array.concat(temp);
+  console.log(array);
   res.render('submission', {
     subtree: data,
-    comments: data2
+    comments: array
   })
 }
 
