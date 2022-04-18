@@ -29,10 +29,24 @@ const mostrarSubmission = async (req, res) => {
     });
 };
 
+async function afegirComentaris(id, sub_id) {
+  var array = [];
+  let reply = await comment.find({submissionId: sub_id, ParentId: id});
+  array.push(reply[0])
+  return array
+}
+
 const mostrarSubmissionTree = async (req,res) => {
-  const id = req.params.id
-  let data = await submission.findById(id)
-  let data2 = await comment.find({submissionId: id});
+  const sub_id = req.params.id
+  let data = await submission.findById(sub_id)
+  let data2 = await comment.find({submissionId: sub_id, ParentId: null});
+  var array = [];
+  var count = Object.keys(data2).length;
+  array.push(data2[0]);
+  var temp = [];
+  temp = await afegirComentaris(data2[0].id, sub_id);
+  array.concat(temp);
+  console.log(temp);
   res.render('submission', {
     subtree: data,
     comments: data2

@@ -1,7 +1,14 @@
 
 const comment = require('../models/comments');
+const submission = require("../models/submissions");
 
 const createComment =  async (req,res) => {
+    const com = new comment(req.body);
+    com.save().then(result => {
+        res.redirect('/')
+    })
+}
+const createReply =  async (req,res) => {
     const com = new comment(req.body);
     com.save().then(result => {
         res.redirect('/')
@@ -12,6 +19,14 @@ const mostrarNewestComment = async (req, res) => {
     const data = await comment.find()
     res.render('comments', {
         comments: data,
+    })
+}
+
+const mostrarReplyForm = async (req,res) => {
+    const id = req.params.id
+    let data = await comment.findById(id);
+    res.render('comment', {
+        comment: data,
     })
 }
 
@@ -28,5 +43,7 @@ module.exports ={
     createComment,
     mostrarNewestComment,
     mostrarCommentForm,
-    mostrarPerSubmission
+    mostrarPerSubmission,
+    createReply,
+    mostrarReplyForm
 }
