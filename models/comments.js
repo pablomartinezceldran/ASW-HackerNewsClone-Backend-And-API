@@ -34,7 +34,7 @@ const commentScheme = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
             required: true,
-            default: null,
+            default: null
         },
     
     },

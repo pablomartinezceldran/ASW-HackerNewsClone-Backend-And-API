@@ -1,16 +1,17 @@
 
 const comment = require('../models/comments');
 const submission = require("../models/submissions");
+const User = require("../models/user");
 
 const createComment =  async (req,res) => {
-    const sub = new comment ({ text: req.body.text, submissionId: req.body.submissionId, user: req.session.user.id});
+    const sub = new comment ({ text: req.body.text, submissionId: req.body.submissionId, user: req.session.user});
     sub.save().then(result => {
         res.redirect('/' )
     })
 }
 const createReply =  async (req,res) => {
-    const com = new comment(req.body);
-    com.save().then(result => {
+    const sub = new comment ({ text: req.body.text, profunditat:req.body.profunditat, submissionId: req.body.submissionId, ParentId: req.body.parentId ,  user: req.session.user});
+    sub.save().then(result => {
         res.redirect('/')
     })
 }

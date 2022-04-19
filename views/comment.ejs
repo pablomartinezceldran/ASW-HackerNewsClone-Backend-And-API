@@ -39,7 +39,8 @@
     </tr>
     <tr>
         <td class = "nav-links" style = "padding-left: 15px; padding-top: 10px">
-            user_Name
+            <a href="/user/<%= comment.username%>"
+            ><%= comment.username%></a>
             <%=comment.createdAt%> |
             <a href="/submission/<%=submission.id%>">
                 <d>parent</d>

@@ -33,11 +33,11 @@ router.post('/unlike/:id', redirectLogin, submissionController.treulike);
 
 router.get('/comments', commentController.mostrarNewestComment);
 
-router.post('/submission/:id', commentController.createComment);
+router.post('/submission/:id', redirectLogin, commentController.createComment);
 
 router.get("/comment/:id", commentController.mostrarReplyForm);
 
-router.post("/comment/:id", commentController.createReply);
+router.post("/comment/:id", redirectLogin, commentController.createReply);
 
 
 
