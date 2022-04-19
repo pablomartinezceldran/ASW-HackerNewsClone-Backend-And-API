@@ -3,9 +3,9 @@ const comment = require('../models/comments');
 const submission = require("../models/submissions");
 
 const createComment =  async (req,res) => {
-    const com = new comment(req.body);
-    com.save().then(result => {
-        res.redirect('/')
+    const sub = new comment ({ text: req.body.text, submissionId: req.body.submissionId, user: req.session.user.id});
+    sub.save().then(result => {
+        res.redirect('/' )
     })
 }
 const createReply =  async (req,res) => {

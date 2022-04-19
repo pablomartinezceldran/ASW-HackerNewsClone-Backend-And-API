@@ -69,7 +69,8 @@ const mostrarSubmissionTree = async (req,res) => {
   }
   res.render('submission', {
     subtree: data,
-    comments: array
+    comments: array,
+    session: req.session
   })
 }
 
