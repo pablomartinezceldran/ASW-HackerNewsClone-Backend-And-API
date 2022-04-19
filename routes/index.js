@@ -25,6 +25,9 @@ router.get(
 
 router.post("/submit", submissionController.createSubmisson);
 
+router.get("/ask", submissionController.mostrarAsk);
+
+
 router.get("/submission/:id", submissionController.mostrarSubmissionTree);
 
 router.post('/like/:id', redirectLogin, submissionController.donalike);

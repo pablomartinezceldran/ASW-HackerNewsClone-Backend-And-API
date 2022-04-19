@@ -87,33 +87,79 @@ const mostrarNewest = async (req, res) => {
   });
 };
 
+const mostrarAsk = async (req, res) => {
+  console.log('llega');
+  let data = await submission.find().sort({ createdAt: -1 });
+  for(sub of data){   
+    if(sub.user){
+      const user = await User.findOne({"_id": sub.user})
+      sub.username = user.username
+    } else sub.username ="undefined"
+  }
+  res.render("ask", {
+    submissions: data,
+    session: req.session
+  });
+}
+
+
 const mostrarSubmissionForm = (req, res) => {
-  res.render("submit");
+  res.render("submit",{
+    errorMessage: [],
+        formData: {}
+  });
 };
 
 const createSubmisson = async (req, res) => {
-  const sub = new submission ({ url: req.body.url, title: req.body.title, user: req.session.user});
-  if (validUrl.isUri(sub.url)) {
-    submission.countDocuments({url: sub.url}, async function (err, count) {
-      if (count > 0) {
-        var existent = await submission.findOne({url: sub.url})
-        console.log(existent.id);
-        console.log("Soc Repetit");
-        res.redirect("/submission/"+existent.id);
-      } else {
-        sub.save().then((result) => {
-          res.redirect("/");
-        });
-      }
-    });
+
+  var title = req.body.title;
+  var url= req.body.url;
+  var text = req.body.text;
+  var message = [];
+    if (!url && !text) {
+      message.push('Inserta url o text')
+      res.render('submit', {
+      errorMessage: message,
+        formData: {
+          title: title,
+          url: url,
+          text: text
+        }
+      });
   } else {
-    res.render("submit", {
-      errorMessage: "El texto introducido no es una URL",
-    });
-    // https://stackoverflow.com/questions/46906876/how-to-preserve-form-data-when-error-generate-on-nodejs-express
-    // por si queremos que el form no se reinicie en el error
+  if (url){ 
+      const sub = new submission ({ url: url, title: title, user: req.session.user, subType : 'url'});
+     if (validUrl.isUri(sub.url)) {
+        submission.countDocuments({url: sub.url}, async function (err, count) {
+          if (count > 0) {
+             var existent = await submission.findOne({url: sub.url})
+             console.log(existent.id);
+             console.log("Soc Repetit");
+             res.redirect("/submission/"+existent.id);
+          } else {
+              sub.save().then((result) => {
+              });
+            }
+        });
+      } else message.push('El texto introducido en URL no es una URL')
+      }
   }
-};
+  if (text){
+    const sub = new submission ({ text: text, title: title, user: req.session.user, subType : 'ask'});
+    sub.save().then((result)=>{
+    })
+  }
+  if (message.length==0) res.redirect('/')
+  else { res.render("submit", {
+    errorMessage: message,
+     formData: {
+       title: title,
+       url: url,
+       text: text
+     }
+    });
+  }
+}
 
 
 
@@ -162,5 +208,6 @@ module.exports = {
   createSubmisson,
   donalike,
   treulike,
-  mostrarSubmissionTree
+  mostrarSubmissionTree,
+  mostrarAsk
 };

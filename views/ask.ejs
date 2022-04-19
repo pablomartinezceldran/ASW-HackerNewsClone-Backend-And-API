@@ -117,7 +117,7 @@
                       style="padding-left: 2px; padding-right: 2px"
                     >
                       <span class="page-top">
-                        <d class="navText">ask</d>
+                        <d class="navText-Current">ask</d>
                       </span>
                     </a>
                   </td>
@@ -170,7 +170,7 @@
             <table>
               <tbody>
                 <% var i=1 %> <% submissions.forEach( (submission)=>{ %> <% if
-                (submission.subType=='url') {%>
+                (submission.subType=='ask') {%>
                 <tr style="height: 15px"></tr>
                 <tr style="padding-bottom: 0px">
                   <td><%=i%>.</td>
@@ -187,10 +187,9 @@
                   </td>
                   <td style="padding-left: 15px">
                     <p>
-                      <a  href="<%= submission.url%>">
+                      <a href="/submission/<%= submission._id %>">
                         <%= submission.title%>
                       </a>
-                      (<%= submission.url%>)
                     </p>
                   </td>
                 </tr>
@@ -198,14 +197,11 @@
                   <td></td>
                   <td></td>
                   <td style="padding-left: 15px">
-                      <%= submission.votes %> points | by
-                      <a href="/user/<%= submission.username%>"
-                        ><%= submission.username%></a>
-                      at <%=submission.createdAt%> %> |
-                    <a href="/submission/<%=submission._id%>">
-                      comment
-                    </a>
-                     |
+                    <%= submission.votes %> points | by
+                    <a href="/user/<%= submission.username%>"
+                      ><%= submission.username%></a
+                    >
+                    at <%=submission.createdAt%> %> |
                   </td>
                   <td>
                     <form action="/unlike/<%= submission._id %>" method="POST">

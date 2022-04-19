@@ -8,7 +8,11 @@ const submissionScheme = new mongoose.Schema(
     },
     url:{
         type:String,
-        required:true
+        
+    },
+    text:{
+        type:String,
+        default: null
     },
     votes:{
         type:Number,
@@ -17,7 +21,7 @@ const submissionScheme = new mongoose.Schema(
     },
     subType: {
         type: String,
-        enum : ['submission','ask'],
+        enum : ['url','ask'],
         required: true
     },
     user: { 

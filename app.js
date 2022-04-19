@@ -6,20 +6,23 @@ const path = require("path");
 const session = require("express-session");
 const dbConnect = require("./config/mongo");
 
-/*  const submission = require("./models/submissions");
+ /* const submission = require("./models/submissions");
 function renameCreatorField() {
-  submission.updateMany({}, { $set: { subType : 'submission' } }, { multi: true }, function(err, data) {
+  submission.updateMany({}, { $set: { subType : 'url' } }, { multi: true }, function(err, data) {
       if (!err) { 
           //success 
       }
   })
 }
 
-renameCreatorField();  */ 
+renameCreatorField();   */
 
 //X si aca
 const flash = require("connect-flash");
 app.use(cors());
+
+
+var expressValidator = require('express-validator');
 
 //session
 app.use(

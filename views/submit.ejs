@@ -56,7 +56,9 @@
                         id="title"
                         name="title"
                         required
-                        class="input"
+                        class="form-control"
+                        placeholder="title"
+                        value="<%=formData.title%>"
                       />
                     </td>
                   </tr>
@@ -67,8 +69,22 @@
                         type="text"
                         id="url"
                         name="url"
-                        required
-                        class="input"
+                        class="form-control"
+                        placeholder="url"
+                        value="<%=formData.url%>"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="label"><label for="text">Text:</label></td>
+                    <td>
+                      <input
+                        type="text"
+                        id="text"
+                        name="text"
+                        class="form-control"
+                        placeholder="text"
+                        value="<%=formData.text%>"
                       />
                     </td>
                   </tr>
