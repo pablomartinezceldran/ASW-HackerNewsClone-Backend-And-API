@@ -15,6 +15,11 @@ const submissionScheme = new mongoose.Schema(
         required:true,
         default: 0
     },
+    subType: {
+        type: String,
+        enum : ['submission','ask'],
+        required: true
+    },
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'user',

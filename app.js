@@ -8,14 +8,14 @@ const dbConnect = require("./config/mongo");
 
 /*  const submission = require("./models/submissions");
 function renameCreatorField() {
-  submission.updateMany({}, { $set: { likedsubmissions : [] } }, { multi: true }, function(err, data) {
+  submission.updateMany({}, { $set: { subType : 'submission' } }, { multi: true }, function(err, data) {
       if (!err) { 
           //success 
       }
   })
 }
 
-renameCreatorField();  */
+renameCreatorField();  */ 
 
 //X si aca
 const flash = require("connect-flash");
