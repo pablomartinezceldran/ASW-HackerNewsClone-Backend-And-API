@@ -35,8 +35,6 @@ router.get('/comments', commentController.mostrarNewestComment);
 
 router.post('/submission/:id', commentController.createComment);
 
-router.get('/CSubmit', commentController.mostrarCommentForm);
-
 router.get("/comment/:id", commentController.mostrarReplyForm);
 
 router.post("/comment/:id", commentController.createReply);
