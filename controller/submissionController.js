@@ -94,9 +94,17 @@ const mostrarSubmissionForm = (req, res) => {
 const createSubmisson = async (req, res) => {
   const sub = new submission ({ url: req.body.url, title: req.body.title, user: req.session.user});
   if (validUrl.isUri(sub.url)) {
-
-    sub.save().then((result) => {
-      res.redirect("/");
+    submission.countDocuments({url: sub.url}, async function (err, count) {
+      if (count > 0) {
+        var existent = await submission.findOne({url: sub.url})
+        console.log(existent.id);
+        console.log("Soc Repetit");
+        res.redirect("/submission/"+existent.id);
+      } else {
+        sub.save().then((result) => {
+          res.redirect("/");
+        });
+      }
     });
   } else {
     res.render("submit", {
