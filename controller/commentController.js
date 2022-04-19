@@ -25,8 +25,11 @@ const mostrarNewestComment = async (req, res) => {
 const mostrarReplyForm = async (req,res) => {
     const id = req.params.id
     let data = await comment.findById(id);
+    let sub = await submission.findById(data.submissionId);
+    console.log(sub)
     res.render('comment', {
         comment: data,
+        submission: sub
     })
 }
 

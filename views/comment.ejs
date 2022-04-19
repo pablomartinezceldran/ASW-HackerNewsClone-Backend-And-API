@@ -28,24 +28,7 @@
                     <td class = "nav-links">
                         <a class="nav-link" href="/" style="padding-left: 0px;">
               <span class="page-top">
-                <b class="navText">Hacker News</b>
-              </span>
-                        </a>
-                    </td>
-                    <td class = "nav-links">
-                        <a class="nav-link" href="/newest" style="padding-left: 2px; padding-right: 2px;">
-              <span class="page-top">
-                <d class="navText">new</d>
-              </span>
-                        </a>
-                    </td>
-                    <td class = "navText">
-                        |
-                    </td>
-                    <td class = "nav-links">
-                        <a class="nav-link" href="/submit" style="padding-left: 2px; padding-right: 2px;">
-              <span class="page-top">
-                <d class="navText">submit</d>
+                <b class="navText">Add Comment</b>
               </span>
                         </a>
                     </td>
@@ -55,25 +38,33 @@
         </td>
     </tr>
     <tr>
-        <td>
-            <a><%= comment.text%></a>
+        <td class = "nav-links" style = "padding-left: 15px; padding-top: 10px">
+            user_Name
+            <%=comment.createdAt%> |
+            <a href="/submission/<%=submission.id%>">
+                <d>parent</d>
+            </a>
         </td>
     </tr>
     <tr>
-        <td>
+        <td style = "padding-left: 15px; padding-top: 10px">
+            <d class = "navText"><%= comment.text%></d>
+        </td>
+    </tr>
+    <tr>
+        <td style = "padding-left: 15px">
             <form action="/comment/:id" method="POST" >
                 <table class="formTable">
                     <tbody>
                     <tr style="height: 10px"></tr>
                     <tr>
-                        <td class="label"><label for="text">Comentari:</label></td>
-                        <td><input type="text" id="text" name="text" required class="input"></td>
+                        <td><textarea type="text" id="text" name="text" required class="input" style="height:150px; width: 600px"></textarea></td>
                         <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= comment.submissionId%>"></td>
                         <td><input type="hidden" id="ParentId" name="ParentId" value= "<%= comment.id%>"></td>
                         <td><input type="hidden" id="profunditat" name="profunditat" value= "<%= comment.profunditat + 1%>"></td>
                     </tr>
                     <tr style="height: 20px"></tr>
-                    <tr><td></td><td><button class="btn btn-secondary btn-sm">Submit</button></td></tr>
+                    <tr><td><button class="btn btn-secondary btn-sm">Reply</button></td></tr>
                     <tr style="height: 30px"></tr>
                     <tr class="bottomSpace"></tr>
                     </tbody>
