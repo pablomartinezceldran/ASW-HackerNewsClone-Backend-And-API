@@ -164,24 +164,23 @@
             <table>
                 <tbody>
                     <% comments.forEach( (comment)=>{ %>
+                        <% var pad = 0 %>
+                        <% for(var i=0; i < comment.profunditat; i++) { %>
+                            <% var pad = pad+ 100 %>
+                        <% } %>
                         <tr>
                             <td style="width:40px;"></td>
-                            <% var pad = 0 %>
-                            <% for(var i=0; i < comment.profunditat; i++) { %>
-                                    <% var pad = pad+ 100 %>
-                            <% } %>
                             <td style="padding-left: <%=pad%>px">Nom_autor created X minutes ago</td>
                         </tr>
                         <tr>
-
                         <td style="width:40px;"></td>
-                            <% var pad = 0 %>
-                            <% for(var i=0; i < comment.profunditat; i++) { %>
-                                <% var pad = pad+ 100 %>
-                            <% } %>
                         <td style="color:black;padding-left: <%=pad%>px">
                             <%= comment.text%>
                         </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="color:black;padding-left: <%=pad%>px"><a  href="/comment/<%= comment.id%>" style="padding-left: 0px; color:black;font-size: 11px;"><u>Reply</u></a></td>
                         </tr>
                         <tr style="height: 10px;"></tr>
                     <% }) %>
