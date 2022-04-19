@@ -187,7 +187,7 @@
                   </td>
                   <td style="padding-left: 15px">
                     <p>
-                      <a href="/submission/<%= submission._id %>">
+                      <a  href="<%= submission.url%>">
                         <%= submission.title%>
                       </a>
                       (<%= submission.url%>)
@@ -198,11 +198,14 @@
                   <td></td>
                   <td></td>
                   <td style="padding-left: 15px">
-                    <%= submission.votes %> points | by
-                    <a href="/user/<%= submission.username%>"
-                      ><%= submission.username%></a
-                    >
-                    at <%=submission.createdAt%> %> |
+                      <%= submission.votes %> points | by
+                      <a href="/user/<%= submission.username%>"
+                        ><%= submission.username%></a>
+                      at <%=submission.createdAt%> %> |
+                    <a href="/submission/<%=submission._id%>">
+                      comment
+                    </a>
+                     |
                   </td>
                   <td>
                     <form action="/unlike/<%= submission._id %>" method="POST">
