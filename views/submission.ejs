@@ -13,6 +13,55 @@
 
 
 <body>
+    <script>
+        function visualLike(msj, id, id2) {
+            document.getElementById(id).style.visibility="hidden";
+            document.getElementById(id2).style.visibility="visible";
+        }
+        function visualUnlike(msj, id, id2) {
+            document.getElementById(id2).style.visibility="visible";
+            document.getElementById(id).style.visibility="hidden";
+        }
+
+        function vote(msj, id) {
+            document.getElementById(id).disabled = true;
+            const Http = new XMLHttpRequest();
+            const url = "/like/" + msj;
+            Http.open("POST", url);
+            Http.send();
+        }
+        function unvote(msj, id, id2) {
+            document.getElementById(id2).disabled = false;
+            const Http = new XMLHttpRequest();
+            const url = "/unlike/" + msj;
+            Http.open("POST", url);
+            Http.send();
+        }
+        function timeSince(date) {
+            var seconds = Math.floor((new Date() - date) / 1000);
+            var interval = seconds / 31536000;
+            if (interval > 1) {
+                return Math.floor(interval) + " years";
+            }
+            interval = seconds / 2592000;
+            if (interval > 1) {
+                return Math.floor(interval) + " months";
+            }
+            interval = seconds / 86400;
+            if (interval > 1) {
+                return Math.floor(interval) + " days";
+            }
+            interval = seconds / 3600;
+            if (interval > 1) {
+                return Math.floor(interval) + " hours";
+            }
+            interval = seconds / 60;
+            if (interval > 1) {
+                return Math.floor(interval) + " minutes";
+            }
+            return Math.floor(seconds) + " seconds";
+        }
+    </script>
 <table class="hdMain">
     <tbody>
     <tr>
@@ -56,38 +105,90 @@
     </tr>
     <tr>
         <td>
-            <a><%= subtree.url%></a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <form action="/submission/:id" method="POST" >
-                <table class="formTable">
-                    <tbody>
-                    <tr style="height: 10px"></tr>
+            <table>
+                <tbody>
                     <tr>
-                        <td class="label"><label for="text">Comentari:</label></td>
-                        <td><input type="text" id="text" name="text" required class="input"></td>
-                        <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= subtree.id%>"></td>
+                        <td>
+                            <form action="/like/<%= subtree._id %>" method="POST">
+                                <button style="background-color: transparent; border:none;" id="id<%= 0 %>x" onclick="visualLike('<%= subtree._id %>', this.id, 'id<%= 0 %>')">
+                                    <img src="/images/triangle.png" width="8" height="8" >
+                                </button>
+                            </form>
+                        </td>
+                        <td style="padding-left: 15px; padding-top: 15px;">
+                            <p>
+                                <a  style="color: black;" href="/submission/<%= subtree._id %>">
+                                    <%= subtree.title%>
+                                </a>
+                                (<%= subtree.url%>)</p>
+                        </td>
                     </tr>
-                    <tr style="height: 20px"></tr>
-                    <tr><td></td><td><button class="btn btn-secondary btn-sm">Submit</button></td></tr>
-                    <tr style="height: 30px"></tr>
-                    <tr class="bottomSpace"></tr>
-                    </tbody>
-                </table>
-            </form>
+                    <tr>
+                        <td></td>
+                        <td style="padding-left: 15px">
+                            <%= subtree.votes %> points | by
+                            <a href="/user/<%= subtree.username%>"
+                            ><%= subtree.username%></a>
+                            at <%=subtree.createdAt%> %> |
+                        </td>
+                        <td>
+                            <form action="/unlike/<%= subtree._id %>" method="POST">
+                                <button style=" height:7px; background-color: transparent; border: none; color:#828282;" id="id<%= 0 %>"
+                                        onclick="visualUnlike('<%= subtree._id %>', this.id, this.id+'x')">Unlike</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr style="height: 15px"></tr>
+                    <tr style="padding-left: 15px;">
+                        <td></td>
+                        <td>
+                            <form action="/submission/:id" method="POST" >
+                                <table class="formTable">
+                                    <tbody>
+                                    <tr style="height: 10px"></tr>
+                                    <tr>
+                                        <td style="padding-left: 15px"><textarea type="text" id="text" name="text" style="height: 150px;width: 600px;"></textarea></td>
+                                        <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= subtree.id%>"></td>
+                                    </tr>
+                                    <tr style="height: 10px"></tr>
+                                    <tr><td style="padding-left: 15px"><button>add comment</button></td></tr>
+                                    <tr style="height: 30px"></tr>
+                                    <tr class="bottomSpace"></tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <% comments.forEach( (comment)=>{ %>
+                        <tr>
+                            <td style="width:40px;"></td>
+                            <% var pad = 0 %>
+                            <% for(var i=0; i < comment.profunditat; i++) { %>
+                                    <% var pad = pad+ 100 %>
+                            <% } %>
+                            <td style="padding-left: <%=pad%>px">Nom_autor created X minutes ago</td>
+                        </tr>
+                        <tr>
+
+                        <td style="width:40px;"></td>
+                            <% var pad = 0 %>
+                            <% for(var i=0; i < comment.profunditat; i++) { %>
+                                <% var pad = pad+ 100 %>
+                            <% } %>
+                        <td style="color:black;padding-left: <%=pad%>px">
+                            <%= comment.text%>
+                        </td>
+                        </tr>
+                        <tr style="height: 10px;"></tr>
+                    <% }) %>
+                </tbody>
+            </table>
         </td>
     </tr>
-    <% comments.forEach( (comment)=>{ %>
-        <tr>
-            <td>
-                <%= comment.text%> <br>
-                <br>
-            </td>
-        </tr>
-    <% }) %>
-    </tbody>
 </table>
 </body>
 </html>
