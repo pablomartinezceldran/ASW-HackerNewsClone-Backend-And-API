@@ -202,11 +202,14 @@
                   <td style="padding-left: 15px">
 
                       <%= submission.votes %> points | by
+
                     <% if(session.user && session.user.username == submission.username){ %>
                       <a style="color: #828282" href="/user/<%= submission.username%>">You (<%= submission.username%>)</a>
                     <% } else{ %>
                       <a style="color: #828282" href="/user/<%= submission.username%>"><%= submission.username%></a>
                     <% } %>
+
+            
                       at <%=submission.createdAt%> %> |
                     <a style="color: #828282;" href="/submission/<%=submission._id%>">
                     <% if (submission.numcomments==0){ %>
