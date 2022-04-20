@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="Creation of the controllers and starting the creation of the submission tree view">
+    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44__Changes_.xml" beforeDir="false" />
     <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="First implementation of the comment controller">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/commentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/commentController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/submissionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/submissionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/comments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/submissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/submissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/CSubmit.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CSubmit.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/submission.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/submission.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,12 +45,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="SubmissionsStyle" />
-                    <option name="lastUsedInstant" value="1648068714" />
+                    <option name="branchName" value="#36_Newest_Style" />
+                    <option name="lastUsedInstant" value="1650359639" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1648064323" />
+                    <option name="lastUsedInstant" value="1650354431" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="#34_Index_Style" />
+                    <option name="lastUsedInstant" value="1650305051" />
                   </RecentBranch>
                 </list>
               </option>
@@ -82,8 +81,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="17.8.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="17.0.24" />
+    <property name="javascript.nodejs.core.library.configured.version" value="17.7.1" />
+    <property name="javascript.nodejs.core.library.typings.version" value="17.0.25" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -122,6 +121,8 @@
       <workItem from="1648288976197" duration="321000" />
       <workItem from="1650014921009" duration="4782000" />
       <workItem from="1650030395979" duration="11956000" />
+      <workItem from="1650348472495" duration="9653000" />
+      <workItem from="1650443386178" duration="12511000" />
     </task>
     <task id="LOCAL-00001" summary="Style del apartat submisisons">
       <created>1648075950157</created>
@@ -151,7 +152,49 @@
       <option name="project" value="LOCAL" />
       <updated>1650037640368</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Style with separation of Html and CSS">
+      <created>1650307709114</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650307709114</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Style with separation of Html and CSS">
+      <created>1650307998695</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1650307998695</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Style with separation of Html and CSS">
+      <created>1650354223477</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1650354223477</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Style with separation of Html and CSS">
+      <created>1650354648805</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1650354648805</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Style with separation of Html and CSS">
+      <created>1650361688523</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1650361688523</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Finishing last things in views of new/comment and index">
+      <created>1650456161151</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1650456161151</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +205,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="#36_Newest_Style" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -171,8 +226,9 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Style del apartat submisisons" />
-    <MESSAGE value="Style with separation of Html and CSS" />
     <MESSAGE value="Creation of the controllers and starting the creation of the submission tree view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation of the controllers and starting the creation of the submission tree view" />
+    <MESSAGE value="Style with separation of Html and CSS" />
+    <MESSAGE value="Finishing last things in views of new/comment and index" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finishing last things in views of new/comment and index" />
   </component>
 </project>
