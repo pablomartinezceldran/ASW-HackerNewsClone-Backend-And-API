@@ -53,9 +53,8 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    req.session.user= req.user;
+    req.session.user = req.user;
     res.redirect("/");
-    console.log(req);
   }
 );
 
@@ -66,5 +65,7 @@ router.get("/user/:id/comments", userController.mostrarComsUser);
 router.get("/user/:id/votedsubms", userController.mostrarLikedSubmsUser);
 
 router.get("/user/:id/votedcomments", userController.mostrarLikedCommsUser);
+
+router.post("/update/:id", ensureAuth, userController.editarPerfil);
 
 module.exports = router;
