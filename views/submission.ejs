@@ -237,8 +237,11 @@
                         <% } %>
                         <tr>
                             <td style="width:40px;"></td>
-                            <td style="padding-left: <%=pad%>px"><a href="/user/<%= comment.username%>"
-                                ><%= comment.username%></a> created X minutes ago</td>
+                            <% if(session.user.username == comment.username){ %>
+                               <td style="padding-left: <%=pad%>px"><a href="/user/<%= comment.username%>">You (<%= comment.username%>)</a> <%=comment.createdAt%></td>
+                            <% } else{ %>
+                                <td style="padding-left: <%=pad%>px"><a href="/user/<%= comment.username%>"><%= comment.username%></a> <%=comment.createdAt%> </td>
+                            <% } %>
                         </tr>
                         <tr>
                         <td style="width:40px;"></td>
