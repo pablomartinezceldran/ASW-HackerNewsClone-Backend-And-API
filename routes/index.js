@@ -38,6 +38,7 @@ router.post('/likeComment/:id', redirectLogin, commentController.donalike);
 router.post('/unlike/:id', redirectLogin, submissionController.treulike);
 router.post('/unlikeNew/:id', redirectLogin, submissionController.treulikeNew);
 
+
 router.post('/unlikeComment/:id', redirectLogin, commentController.treulike);
 
 router.get('/comments', commentController.mostrarNewestComment);

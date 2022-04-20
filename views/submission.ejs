@@ -207,20 +207,14 @@
                     at <%=subtree.createdAt%> %> |
                   </td>
                   <td>
-                    <form action="/unlike/<%= subtree._id %>" method="POST">
-                      <button
-                        style="
-                          height: 7px;
-                          background-color: transparent;
-                          border: none;
-                          color: #828282;
-                        "
-                        id="id<%= 0 %>"
-                        onclick="visualUnlike('<%= subtree._id %>', this.id, this.id+'x')"
-                      >
-                        <d>Unlike</d>
-                      </button>
-                    </form>
+                    <% if(session.user  && session.user.likedsubmissions.includes((subtree._id).toString())){ %>
+                      <form action="/unlikeNew/<%= subtree._id %>" method="POST">
+                        <button style="height: 7px;background-color: transparent;border: none;color: #828282;" id="id<%= i %>">
+                          <d>Unlike</d>
+                        </button>
+                      </form>
+                    <% } else{ %>
+                    <% } %>
                   </td>
                 </tr>
                 <tr>
