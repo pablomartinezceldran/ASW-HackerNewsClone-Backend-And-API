@@ -202,6 +202,10 @@
                       ><%= submission.username%></a
                     >
                     at <%=submission.createdAt%> %> |
+                    <a href="/submission/<%=submission._id%>">
+                      comment
+                    </a>
+                    |
                   </td>
                   <td>
                     <form action="/unlike/<%= submission._id %>" method="POST">
@@ -215,7 +219,7 @@
                         id="id<%= i %>"
                         onclick="visualUnlike('<%= submission._id %>', this.id, this.id+'x')"
                       >
-                        Unlike
+                        <d>Unlike</d>
                       </button>
                     </form>
                   </td>

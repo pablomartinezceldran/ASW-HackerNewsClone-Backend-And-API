@@ -6,13 +6,13 @@ const User = require("../models/user");
 const createComment =  async (req,res) => {
     const sub = new comment ({ text: req.body.text, submissionId: req.body.submissionId, user: req.session.user});
     sub.save().then(result => {
-        res.redirect('/' )
+        res.redirect('/submission/'+ sub.submissionId)
     })
 }
 const createReply =  async (req,res) => {
     const sub = new comment ({ text: req.body.text, profunditat:req.body.profunditat, submissionId: req.body.submissionId, ParentId: req.body.parentId ,  user: req.session.user});
     sub.save().then(result => {
-        res.redirect('/')
+        res.redirect('/submission/'+ sub.submissionId)
     })
 }
 
