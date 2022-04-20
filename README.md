@@ -4,4 +4,5 @@
 - Pablo Martinez
 - Gerard Alvarez
 
-####Aquest es el repo bo del nostres grup. 
+App desplegada a :
+https://serene-peak-25231.herokuapp.com/
