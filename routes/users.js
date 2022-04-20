@@ -42,7 +42,7 @@ router.get("/signup", loggedIn, userController.mostrarFormSignup);
 
 router.post("/signup", loggedIn, userController.createUser);
 
-router.get("/user/:id", ensureAuth, userController.mostrarUser);
+router.get("/user/:id", userController.mostrarUser);
 
 router.get(
   "/auth/google",
@@ -53,7 +53,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    req.session.user = req.user.displayName;
+    req.session.user = req.user.username;
     res.redirect("/");
   }
 );

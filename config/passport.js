@@ -1,6 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
-const User = require("../models/GoogleUser");
+const User = require("../models/user");
 
 module.exports = function (passport) {
   passport.use(
@@ -14,7 +14,8 @@ module.exports = function (passport) {
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
           googleId: profile.id,
-          displayName: profile.displayName,
+          username: profile.displayName,
+          password: "1234",
         };
 
         try {
