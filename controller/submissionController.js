@@ -5,11 +5,17 @@ var validUrl = require("valid-url");
 
 const mostrarIndex = async (req, res) => {
   let data = await submission.find().sort({ votes: -1 });
-  for (sub of data) {
-    if (sub.user) {
-      const user = await User.findOne({ _id: sub.user });
-      sub.username = user.username;
-    } else sub.username = "undefined";
+  if (data.length > 0){
+    for (sub of data) {
+      if (sub.user) {
+         await User.findOne({ _id: sub.user }).then((result) => {
+           if (result){
+          sub.username = result.username;
+           }
+        })
+         
+        } else sub.username = "undefined";
+    }
   }
   res.render("index", {
     submissions: data,

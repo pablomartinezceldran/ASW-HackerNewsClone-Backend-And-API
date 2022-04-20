@@ -216,7 +216,9 @@
                   <td></td>
                   <td style="padding-left: 15px">
                     <%= submission.votes %> points | by
-                    <a href="/user/<%= submission.username%>"
+                    <a
+                      style="color: #828282"
+                      href="/user/<%= submission.username%>"
                       ><%= submission.username%></a
                     >
                     at <%=submission.createdAt%> %> |
@@ -224,10 +226,12 @@
                       style="color: #828282"
                       href="/submission/<%=submission._id%>"
                     >
-                      comments
+                      <% if (submission.numcomments==0){ %> discuss <% } else
+                      {%> <%=submission.numcomments%> comments <% }%>
                     </a>
                     |
                   </td>
+
                   <td>
                     <% if(session.user &&
                     session.user.likedsubmissions.includes((submission._id).toString())){
