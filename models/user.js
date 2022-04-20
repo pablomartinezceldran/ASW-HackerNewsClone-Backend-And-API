@@ -1,13 +1,10 @@
+
 const mongoose = require("mongoose");
 var userSchema = new mongoose.Schema(
-  {
+{
     googleId: {
-      type: String,
-      required: true,
-    },
-    username: {
-      type: String,
-      required: true,
+        type: String,
+            required: true,
     },
     password: {
       type: String,
@@ -20,23 +17,21 @@ var userSchema = new mongoose.Schema(
         default: null,
       },
     ],
-    likedcomments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "comments",
-        default: null,
-      },
-    ],
+  likedcomments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'submissions',
+      default: null
+  }],
 
-    date: {
-      type: Date,
-      default: Date.now,
-    },
+  date: {
+    type: Date,
+    default: Date.now,
   },
-  {
-    timestamps: true,
-    versionKey: false,
-  }
+},
+{
+    timestamps:true,
+    versionKey:false
+}
 );
 
 module.exports = mongoose.model("User", userSchema);

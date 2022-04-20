@@ -32,7 +32,11 @@ router.get("/submission/:id", submissionController.mostrarSubmissionTree);
 
 router.post('/like/:id', redirectLogin, submissionController.donalike);
 
+router.post('/likeComment/:id', redirectLogin, commentController.donalike);
+
 router.post('/unlike/:id', redirectLogin, submissionController.treulike);
+
+router.post('/unlikeComment/:id', redirectLogin, commentController.treulike);
 
 router.get('/comments', commentController.mostrarNewestComment);
 
