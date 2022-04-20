@@ -133,6 +133,21 @@ const mostrarLikedCommsUser = async (req, res) => {
   });
 };
 
+const editarPerfil = async (req, res) => {
+  var id = req.params.id;
+  const { about } = req.body;
+  await User.findOne({ username: id }).then((user) => {
+    if (user) {
+      user.about = about;
+      user.save();
+      res.render("user", {
+        user: user,
+        session: req.session,
+      });
+    } else res.render("error");
+  });
+};
+
 module.exports = {
   mostrarFormLogin,
   createUser,
@@ -144,4 +159,5 @@ module.exports = {
   mostrarComsUser,
   mostrarLikedSubmsUser,
   mostrarLikedCommsUser,
+  editarPerfil,
 };

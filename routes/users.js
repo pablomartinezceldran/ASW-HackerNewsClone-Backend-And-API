@@ -66,4 +66,6 @@ router.get("/user/:id/votedsubms", userController.mostrarLikedSubmsUser);
 
 router.get("/user/:id/votedcomments", userController.mostrarLikedCommsUser);
 
+router.post("/update/:id", ensureAuth, userController.editarPerfil);
+
 module.exports = router;

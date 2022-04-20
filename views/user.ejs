@@ -13,13 +13,6 @@
 
   <body>
     <script>
-      function editProfile(user, about) {
-        const Http = new XMLHttpRequest();
-        const url = "/update/" + user;
-        Http.open("POST", url);
-        Http.send();
-      }
-
       function visualLike(msj, id, id2) {
         document.getElementById(id).style.visibility = "hidden";
         document.getElementById(id2).style.visibility = "visible";
@@ -167,7 +160,7 @@
                       </span>
                     </a>
                   </td>
-                  <%}%>
+
                   <td class="navText">|</td>
                   <td class="nav-links">
                     <a
@@ -180,6 +173,7 @@
                       </span>
                     </a>
                   </td>
+                  <%}%>
                 </tr>
               </tbody>
             </table>
@@ -203,37 +197,23 @@
                 </tr>
                 <tr>
                   <td style="vertical-align: top">about:</td>
+                  <% if(session.user && session.user.username == user.username)
+                  {%>
                   <td>
                     <form
-                      action="/edit/<%=session.user.username%>"
+                      action="/update/<%= session.user.username%>"
                       method="post"
                     >
                       <textarea name="about" id="about" cols="50" rows="5">
-                      <%= user.about %></textarea
+<%= user.about %></textarea
                       >
-                      <button>update</button>
+                      <input type="submit" value="update" />
                     </form>
                   </td>
-                  <!--<%if(session.user.username == user.username){ %>
-                  <td>
-                    <textarea name="about" id="about" cols="50" rows="5">
-<%= user.about %></textarea
-                    >
-                  </td>
+                  <%}else{%>
+                  <td><%= user.about %></td>
+                  <%}%>
                 </tr>
-
-                <tr>
-                  <td>
-                    <button
-                      onclick="updateProfile('<%= session.user.username%>', 'about')"
-                    >
-                      update
-                    </button>
-                  </td> -->
-                </tr>
-                <%} else {%>
-                <td><%= user.about %></td>
-                <%} %>
               </tbody>
             </table>
           </td>
