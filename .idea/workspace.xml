@@ -7,6 +7,9 @@
     <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="Creation of the controllers and starting the creation of the submission tree view">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44__Changes_.xml" beforeDir="false" />
+    <list default="true" id="e3868189-001b-4eb3-bdf8-42cc4feaa5bb" name="Changes" comment="First implementation of the comment controller">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_03_2022_21_44__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/commentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/commentController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/submissionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/submissionController.js" afterDir="false" />
@@ -25,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
