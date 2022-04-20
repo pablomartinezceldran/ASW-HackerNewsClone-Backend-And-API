@@ -3,10 +3,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
+const passport = require("passport");
 const session = require("express-session");
 const dbConnect = require("./config/mongo");
 
- /* const submission = require("./models/submissions");
+/* const submission = require("./models/submissions");
 function renameCreatorField() {
   submission.updateMany({}, { $set: { subType : 'url' } }, { multi: true }, function(err, data) {
       if (!err) { 
@@ -21,17 +22,22 @@ renameCreatorField();   */
 const flash = require("connect-flash");
 app.use(cors());
 
+require("./config/passport")(passport);
 
-var expressValidator = require('express-validator');
+var expressValidator = require("express-validator");
 
 //session
 app.use(
   session({
     secret: "secret",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 //GUARDAMOS LAS RUTAS
 const indexRouter = require("./routes/index");
