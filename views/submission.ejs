@@ -25,14 +25,14 @@
       function vote(msj, id) {
         document.getElementById(id).disabled = true;
         const Http = new XMLHttpRequest();
-        const url = "/like/" + msj;
+        const url = "/likeSub/" + msj;
         Http.open("POST", url);
         Http.send();
       }
       function unvote(msj, id, id2) {
         document.getElementById(id2).disabled = false;
         const Http = new XMLHttpRequest();
-        const url = "/unlike/" + msj;
+        const url = "/unlikeSub/" + msj;
         Http.open("POST", url);
         Http.send();
       }
@@ -170,7 +170,7 @@
                 <tr>
                   <td>
                     <% if(session.user && !session.user.likedsubmissions.includes((subtree._id).toString())){ %>
-                      <form action="/like/<%= subtree._id %>" method="POST">
+                      <form action="/likeSub/<%= subtree._id %>" method="POST">
                         <button
                                 style="background-color: transparent; border: none"
                         >
@@ -208,8 +208,8 @@
                   </td>
                   <td>
                     <% if(session.user  && session.user.likedsubmissions.includes((subtree._id).toString())){ %>
-                      <form action="/unlikeNew/<%= subtree._id %>" method="POST">
-                        <button style="height: 7px;background-color: transparent;border: none;color: #828282;" id="id<%= i %>">
+                      <form action="/unlikeSub/<%= subtree._id %>" method="POST">
+                        <button style="height: 7px;background-color: transparent;border: none;color: #828282;">
                           <d>Unlike</d>
                         </button>
                       </form>

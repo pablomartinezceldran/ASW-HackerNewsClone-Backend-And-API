@@ -200,6 +200,24 @@ const donalike = async (req, res) => {
       res.render("error");
     });
 };
+const donalikeSub = async (req, res) => {
+  const id = req.params.id;
+  let u = req.session.user;
+  await submission
+      .findById(id)
+      .then(async (result) => {
+        await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
+        result.votes += 1;
+        result.save();
+        req.session.user.likedsubmissions.push(id);
+        console.log("sumado");
+        res.redirect("/submission/"+id);
+      })
+      .catch((err) => {
+        res.render("error");
+      });
+};
+
 const donalikeNew = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
@@ -260,6 +278,27 @@ const treulike = async (req, res) => {
       res.render("error");
     });
 };
+const treulikeSub = async (req, res) => {
+  const id = req.params.id;
+  let u = req.session.user;
+  await submission
+      .findById(id)
+      .then(async (result) => {
+        await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
+        result.votes -= 1;
+        result.save();
+        console.log("sumado1");
+        req.session.user.likedsubmissions.splice(
+            req.session.user.likedsubmissions.indexOf(id),
+            1
+        );
+        console.log("noooo");
+        res.redirect("/submission/"+id);
+      })
+      .catch((err) => {
+        res.render("error");
+      });
+};
 
 const upddateSubmisson = (req, res) => {};
 
@@ -277,5 +316,7 @@ module.exports = {
   mostrarAsk,
   donalikeNew,
   treulikeNew,
+  donalikeSub,
+  treulikeSub,
 
 };
