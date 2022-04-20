@@ -6,7 +6,6 @@ const commentController = require("../controller/commentController");
 
 const redirectLogin = (req, res, next) => {
   if (!req.session.user) {
-    console.log("xdddd");
     res.redirect("/login");
   } else {
     next();

@@ -105,7 +105,6 @@ const mostrarNewest = async (req, res) => {
 };
 
 const mostrarAsk = async (req, res) => {
-  console.log("llega");
   let data = await submission.find().sort({ createdAt: -1 });
   for (sub of data) {
     if (sub.user) {
@@ -155,7 +154,6 @@ const createSubmisson = async (req, res) => {
           async function (err, count) {
             if (count > 0) {
               var existent = await submission.findOne({ url: sub.url });
-              console.log(existent.id);
               console.log("Soc Repetit");
               res.redirect("/submission/" + existent.id);
             } else {
