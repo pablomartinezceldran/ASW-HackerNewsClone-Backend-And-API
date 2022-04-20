@@ -20,6 +20,13 @@ var userSchema = new mongoose.Schema(
         default: null,
       },
     ],
+    likedcomments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comments",
+        default: null,
+      },
+    ],
 
     date: {
       type: Date,
