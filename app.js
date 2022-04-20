@@ -22,7 +22,7 @@ renameCreatorField();   */
 const flash = require("connect-flash");
 app.use(cors());
 
-require("./config/passport");
+require("./config/passport")(passport);
 
 var expressValidator = require("express-validator");
 

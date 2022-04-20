@@ -1,6 +1,7 @@
 var express = require("express");
 const { redirect } = require("express/lib/response");
 var router = express.Router();
+const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 const passport = require("passport");
 
@@ -27,17 +28,21 @@ const auth = (req, res, next) => {
   }
 };
 
-router.get("/login", loggedIn, userController.mostrarFormLogin);
+router.get("/login", ensureGuest, userController.mostrarFormLogin);
 
-router.get("/logout", userController.tancarSessio);
+router.get("/logout", (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.redirect("/");
+});
 
-router.post("/login", loggedIn, userController.iniciaSessio);
+router.post("/login", ensureGuest, userController.iniciaSessio);
 
 router.get("/signup", loggedIn, userController.mostrarFormSignup);
 
 router.post("/signup", loggedIn, userController.createUser);
 
-router.get("/user/:id", auth, userController.mostrarUser);
+router.get("/user/:id", ensureAuth, userController.mostrarUser);
 
 router.get(
   "/auth/google",
@@ -46,9 +51,10 @@ router.get(
 
 router.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("/newsest");
+    req.session.user = req.user.displayName;
+    res.redirect("/");
   }
 );
 
