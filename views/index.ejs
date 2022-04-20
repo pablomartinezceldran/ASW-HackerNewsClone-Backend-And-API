@@ -146,7 +146,6 @@
                       </span>
                     </a>
                   </td>
-                  <%}%>
                   <td class="navText">|</td>
                   <td class="nav-links">
                     <a
@@ -159,6 +158,7 @@
                       </span>
                     </a>
                   </td>
+                  <%}%>
                 </tr>
               </tbody>
             </table>
@@ -187,7 +187,7 @@
                   </td>
                   <td style="padding-left: 15px">
                     <p>
-                      <a  href="<%= submission.url%>">
+                      <a href="<%= submission.url%>">
                         <%= submission.title%>
                       </a>
                       (<%= submission.url%>)
@@ -198,14 +198,13 @@
                   <td></td>
                   <td></td>
                   <td style="padding-left: 15px">
-                      <%= submission.votes %> points | by
-                      <a href="/user/<%= submission.username%>"
-                        ><%= submission.username%></a>
-                      at <%=submission.createdAt%> %> |
-                    <a href="/submission/<%=submission._id%>">
-                      comment
-                    </a>
-                     |
+                    <%= submission.votes %> points | by
+                    <a href="/user/<%= submission.username%>"
+                      ><%= submission.username%></a
+                    >
+                    at <%=submission.createdAt%> %> |
+                    <a href="/submission/<%=submission._id%>"> comment </a>
+                    |
                   </td>
                   <td>
                     <form action="/unlike/<%= submission._id %>" method="POST">
