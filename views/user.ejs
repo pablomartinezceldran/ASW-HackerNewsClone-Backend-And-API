@@ -13,6 +13,13 @@
 
   <body>
     <script>
+      function editProfile(user, about) {
+        const Http = new XMLHttpRequest();
+        const url = "/update/" + user;
+        Http.open("POST", url);
+        Http.send();
+      }
+
       function visualLike(msj, id, id2) {
         document.getElementById(id).style.visibility = "hidden";
         document.getElementById(id2).style.visibility = "visible";
@@ -109,6 +116,20 @@
                       </span>
                     </a>
                   </td>
+                  <%if(session.user){ %>
+                  <td class="navText">|</td>
+                  <td class="nav-links">
+                    <a
+                      class="nav-link"
+                      href="/threads/<%=session.user.username%>"
+                      style="padding-left: 2px; padding-right: 2px"
+                    >
+                      <span class="page-top">
+                        <d class="navText">threads</d>
+                      </span>
+                    </a>
+                  </td>
+                  <%}%>
                   <td class="navText">|</td>
                   <td class="nav-links">
                     <a
@@ -164,52 +185,104 @@
             </table>
           </td>
         </tr>
+        <!-- datos de usuario -->
+        <tr>
+          <td>
+            <table>
+              <tbody>
+                <tr>
+                  <td><br /></td>
+                </tr>
+                <tr>
+                  <td>user:</td>
+                  <td><%= user.username %></td>
+                </tr>
+                <tr>
+                  <td>created At:</td>
+                  <td style="color: black"><%= user.date %></td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: top">about:</td>
+                  <td>
+                    <form
+                      action="/edit/<%=session.user.username%>"
+                      method="post"
+                    >
+                      <textarea name="about" id="about" cols="50" rows="5">
+                      <%= user.about %></textarea
+                      >
+                      <button>update</button>
+                    </form>
+                  </td>
+                  <!--<%if(session.user.username == user.username){ %>
+                  <td>
+                    <textarea name="about" id="about" cols="50" rows="5">
+<%= user.about %></textarea
+                    >
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <button
+                      onclick="updateProfile('<%= session.user.username%>', 'about')"
+                    >
+                      update
+                    </button>
+                  </td> -->
+                </tr>
+                <%} else {%>
+                <td><%= user.about %></td>
+                <%} %>
+              </tbody>
+            </table>
+          </td>
+        </tr>
 
         <tr>
           <td>
             <table>
               <tbody>
                 <tr class="nav-links">
-                    <a
-                      class="nav-link"
-                      href="/user/<%=user.username%>/subms"
-                      style="padding-left: 2px; padding-right: 2px"
-                    >
-                        <d class="navText">Submissions</d>
-                    </a>
-                  </tr>
-                <tr class="nav-links">
-                    <a
-                      class="nav-link"
-                      href="/user/<%=user.username%>/comments"
-                      style="padding-left: 2px; padding-right: 2px"
-                    >
-                      <span class="page-top">
-                        <d class="navText">Comments</d>
-                      </span>
-                    </a>
-                  </tr>
-                <tr class="nav-links">
-                    <a
-                      class="nav-link"
-                      href="/user/<%=user.username%>/votedsubms"
-                      style="padding-left: 2px; padding-right: 2px"
-                    >
-                      <span class="page-top">
-                        <d class="navText">Liked Submissions</d>
-                      </span>
-                    </a>
+                  <a
+                    class="nav-link"
+                    href="/user/<%=user.username%>/subms"
+                    style="padding-left: 2px; padding-right: 2px"
+                  >
+                    <d class="navText">Submissions</d>
+                  </a>
                 </tr>
-                    <tr class="nav-links">
-                        <a
-                          class="nav-link"
-                          href="/user/<%=user.username%>/votedcomments"
-                          style="padding-left: 2px; padding-right: 2px"
-                        >
-                            <d class="navText">Liked commments</d>
-                         
-                        </a>
-                      </tr>
+                <tr class="nav-links">
+                  <a
+                    class="nav-link"
+                    href="/threads/<%=user.username%>"
+                    style="padding-left: 2px; padding-right: 2px"
+                  >
+                    <span class="page-top">
+                      <d class="navText">Comments</d>
+                    </span>
+                  </a>
+                </tr>
+                <tr class="nav-links">
+                  <a
+                    class="nav-link"
+                    href="/user/<%=user.username%>/votedsubms"
+                    style="padding-left: 2px; padding-right: 2px"
+                  >
+                    <span class="page-top">
+                      <d class="navText">Liked Submissions</d>
+                    </span>
+                  </a>
+                </tr>
+                <tr class="nav-links">
+                  <a
+                    class="nav-link"
+                    href="/user/<%=user.username%>/votedcomments"
+                    style="padding-left: 2px; padding-right: 2px"
+                  >
+                    <d class="navText">Liked commments</d>
+                  </a>
+                </tr>
               </tbody>
             </table>
           </td>

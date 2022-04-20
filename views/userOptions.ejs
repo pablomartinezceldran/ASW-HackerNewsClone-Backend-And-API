@@ -172,13 +172,13 @@
             <table>
               <tbody>
                 <% var i=1 %> <% submissions.forEach( (submission)=>{ %> <%if
-                (param != 'comments' && param !='liked comments') {%>
+                (param !='liked comments') {%>
 
                 <tr style="height: 15px"></tr>
                 <tr style="padding-bottom: 0px">
                   <td><%=i%>.</td>
                   <td>
-                    <form action="/like/<%= submission._id %>" method="POST">
+                    <!-- <form action="/like/<%= submission._id %>" method="POST">
                       <button
                         style="background-color: transparent; border: none"
                         id="id<%= i %>x"
@@ -186,7 +186,7 @@
                       >
                         <img src="/images/triangle.png" width="8" height="8" />
                       </button>
-                    </form>
+                    </form> -->
                   </td>
                   <td style="padding-left: 15px">
                     <p>
@@ -211,7 +211,7 @@
                     |
                   </td>
                   <td>
-                    <form action="/unlike/<%= submission._id %>" method="POST">
+                    <!-- <form action="/unlike/<%= submission._id %>" method="POST">
                       <button
                         style="
                           height: 7px;
@@ -224,30 +224,44 @@
                       >
                         <d>Unlike</d>
                       </button>
-                    </form>
+                    </form> -->
                   </td>
                 </tr>
                 <tr style="height: 10px"></tr>
 
                 <% }else { %>
-                  <tr>
-                    <td style="width:40px; padding-top: 0"></td>
-                    <% if(session.user.username == submission.username){ %>
-                    <td><a href="/user/<%= submission.username%>">You (<%= submission.username%>)</a> <%=submission.createdAt%></td>
-                    <% } else{ %>
-                    <td><a href="/user/<%= submission.username%>"><%= submission.username%></a> <%=submission.createdAt%> </td>
-                    <% } %>
-                  </tr>
-                  <tr>
-                    <td style="width:40px;"></td>
-                    <td style="color:black;">
-                      <%= submission.text%>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td style="color:black"><a  href="/comment/<%= submission.id%>" style="padding-left: 0px; color:black;font-size: 11px;"><u>Reply</u></a></td>
-                  </tr>
+                <tr>
+                  <td style="width: 40px; padding-top: 0"></td>
+                  <% if(session.user.username == submission.username){ %>
+                  <td>
+                    <a href="/user/<%= submission.username%>"
+                      >You (<%= submission.username%>)</a
+                    >
+                    <%=submission.createdAt%>
+                  </td>
+                  <% } else{ %>
+                  <td>
+                    <a href="/user/<%= submission.username%>"
+                      ><%= submission.username%></a
+                    >
+                    <%=submission.createdAt%>
+                  </td>
+                  <% } %>
+                </tr>
+                <tr>
+                  <td style="width: 40px"></td>
+                  <td style="color: black"><%= submission.text%></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td style="color: black">
+                    <a
+                      href="/comment/<%= submission.id%>"
+                      style="padding-left: 0px; color: black; font-size: 11px"
+                      ><u>Reply</u></a
+                    >
+                  </td>
+                </tr>
                 <% }i+=1 %> <% }) %>
               </tbody>
             </table>
