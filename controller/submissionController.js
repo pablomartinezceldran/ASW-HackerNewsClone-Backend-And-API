@@ -56,14 +56,26 @@ async function afegirComentaris(id, sub_id) {
 const mostrarSubmissionTree = async (req,res) => {
   const sub_id = req.params.id
   let data = await submission.findById(sub_id)
+  if(data.user){
+    const user = await User.findOne({"_id": data.user})
+    data.username = user.username
+  } else data.username ="undefined"
   let data2 = await comment.find({submissionId: sub_id, ParentId: null});
   var array = [];
   var count = Object.keys(data2).length;
   for (var i = 0; i < count; i++){
+    if(data2[i].user){
+      const user = await User.findOne({"_id": data2[i].user})
+      data2[i].username = user.username
+    } else data2[i].username ="undefined"
     array.push(data2[i]);
     var temp = [];
     temp = await afegirComentaris(data2[i].id, sub_id);
     for (var j = 0; j < temp.length; j++) {
+      if(temp[j].user){
+        const user = await User.findOne({"_id": temp[j].user})
+        temp[j].username = user.username
+      } else temp[j].username ="undefined"
       array.push(temp[j]);
     }
   }

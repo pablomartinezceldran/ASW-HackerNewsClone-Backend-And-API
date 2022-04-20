@@ -38,39 +38,60 @@
         </td>
     </tr>
     <tr>
-        <td class = "nav-links" style = "padding-left: 15px; padding-top: 10px">
-            <a href="/user/<%= comment.username%>"
-            ><%= comment.username%></a>
-            <%=comment.createdAt%> |
-            <a href="/submission/<%=submission.id%>">
-                <d>parent</d>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td style = "padding-left: 15px; padding-top: 10px; color: black">
-            <%= comment.text%>
-        </td>
-    </tr>
-    <tr>
-        <td style = "padding-left: 15px">
-            <form action="/comment/:id" method="POST" >
-                <table class="formTable">
-                    <tbody>
-                    <tr style="height: 10px"></tr>
-                    <tr>
-                        <td><textarea type="text" id="text" name="text" required class="input" style="height:150px; width: 600px"></textarea></td>
-                        <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= comment.submissionId%>"></td>
-                        <td><input type="hidden" id="ParentId" name="ParentId" value= "<%= comment.id%>"></td>
-                        <td><input type="hidden" id="profunditat" name="profunditat" value= "<%= comment.profunditat + 1%>"></td>
-                    </tr>
-                    <tr style="height: 20px"></tr>
-                    <tr><td><button class="btn btn-secondary btn-sm">Reply</button></td></tr>
-                    <tr style="height: 30px"></tr>
-                    <tr class="bottomSpace"></tr>
-                    </tbody>
-                </table>
-            </form>
+        <td>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                    <form action="/like/<%= comment._id %>" method="POST">
+                        <button style="background-color: transparent; border:none;" id="id<%= 0 %>x" onclick="visualLike('<%= comment._id %>', this.id, 'id<%= 0 %>')">
+                            <img src="/images/triangle.png" width="8" height="8" >
+                        </button>
+                    </form>
+                </td>
+                <td class = "nav-links" style = "padding-left: 15px; padding-top: 10px">
+                    <a href="/user/<%= comment.username%>"
+                    ><%= comment.username%></a>
+                    <%=comment.createdAt%> |
+                    <a href="/submission/<%=submission.id%>">
+                        <d>parent</d>
+                    </a>  |
+                </td>
+                <td>
+                    <form action="/unlike/<%= submission._id %>" method="POST">
+                        <button style=" height:8px; background-color: transparent; border: none; color:#828282; padding-top: 8px" id="id<%= 0 %>"
+                                onclick="visualUnlike('<%= submission._id %>', this.id, this.id+'x')"><d>Unlike</d></button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style = "padding-left: 15px; padding-top: 10px; color: black">
+                    <%= comment.text%>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style = "padding-left: 15px">
+                    <form action="/comment/:id" method="POST" >
+                        <table class="formTable">
+                            <tbody>
+                            <tr style="height: 10px"></tr>
+                            <tr>
+                                <td><textarea type="text" id="text" name="text" required class="input" style="height:150px; width: 600px"></textarea></td>
+                                <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= comment.submissionId%>"></td>
+                                <td><input type="hidden" id="ParentId" name="ParentId" value= "<%= comment.id%>"></td>
+                                <td><input type="hidden" id="profunditat" name="profunditat" value= "<%= comment.profunditat + 1%>"></td>
+                            </tr>
+                            <tr style="height: 20px"></tr>
+                            <tr><td><button class="btn btn-secondary btn-sm">Reply</button></td></tr>
+                            <tr style="height: 30px"></tr>
+                            <tr class="bottomSpace"></tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </tbody>
+            </table>
         </td>
     </tr>
     </tbody>
