@@ -217,7 +217,13 @@
                       ><%= submission.username%></a
                     >
                     at <%=submission.createdAt%> %> |
-                    <a href="/submission/<%=submission._id%>"> comment </a>
+                    <a href="/submission/<%=submission._id%>">
+                      <% if (submission.numcomments==0){ %>
+                        discuss
+                      <% } else {%>
+                        <%=submission.numcomments%> comments
+                        <% }%>  
+                    </a>
                     |
                   </td>
                   <td>
@@ -241,6 +247,26 @@
                 <% i+=1} %> <% }) %>
               </tbody>
             </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="/images/s.gif" height="10" width="0">
+            <table width="100%" cellspacing="0" cellpadding="1">
+              <tbody>
+              <tr>
+                <td bgcolor = "#ff660"></td>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <center>
+              <e style="color:black">
+                Hacker News FIB 2022
+              </e>
+            </center>
+            <br>
+            <br>
           </td>
         </tr>
       </tbody>
