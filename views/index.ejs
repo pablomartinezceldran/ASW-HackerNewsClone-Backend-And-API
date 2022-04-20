@@ -205,7 +205,11 @@
                         ><%= submission.username%></a>
                       at <%=submission.createdAt%> %> |
                     <a style="color: #828282;" href="/submission/<%=submission._id%>">
-                      comments
+                    <% if (submission.numcomments==0){ %>
+                      discuss
+                    <% } else {%>
+                      <%=submission.numcomments%> comments
+                      <% }%>
                     </a>
                      |
                   </td>

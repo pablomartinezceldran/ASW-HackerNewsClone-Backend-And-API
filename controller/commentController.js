@@ -5,16 +5,23 @@ const User = require("../models/user");
 
 const createComment =  async (req,res) => {
     const sub = new comment ({ text: req.body.text, submissionId: req.body.submissionId, user: req.session.user});
-    sub.save().then(result => {
+    sub.save().then(async result => {
+        await submission.findById(sub.submissionId.toString()).then((s) => {
+        s.numcomments+= 1;
+        s.save();
         res.redirect('/submission/'+ sub.submissionId)
     })
-}
+})}
+
 const createReply =  async (req,res) => {
     const sub = new comment ({ text: req.body.text, profunditat:req.body.profunditat, submissionId: req.body.submissionId, ParentId: req.body.parentId ,  user: req.session.user});
-    sub.save().then(result => {
+    sub.save().then(async result => {
+        await submission.findById(sub.submissionId.toString()).then((s) => {
+        s.numcomments += 1;
+        s.save();
         res.redirect('/submission/'+ sub.submissionId)
     })
-}
+})}
 
 const mostrarNewestComment = async (req, res) => {
     const data = await comment.find()
