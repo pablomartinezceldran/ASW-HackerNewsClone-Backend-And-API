@@ -28,7 +28,14 @@ const commentScheme = new mongoose.Schema(
         ParentId: {
             type: Schema.Types.ObjectId, ref: 'comment',
             required: false
-        }
+        },
+
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
+            required: true,
+            default: null
+        },
     
     },
     {

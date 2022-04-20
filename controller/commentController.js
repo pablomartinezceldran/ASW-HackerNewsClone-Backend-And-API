@@ -1,16 +1,17 @@
 
 const comment = require('../models/comments');
 const submission = require("../models/submissions");
+const User = require("../models/user");
 
 const createComment =  async (req,res) => {
-    const com = new comment(req.body);
-    com.save().then(result => {
-        res.redirect('/')
+    const sub = new comment ({ text: req.body.text, submissionId: req.body.submissionId, user: req.session.user});
+    sub.save().then(result => {
+        res.redirect('/' )
     })
 }
 const createReply =  async (req,res) => {
-    const com = new comment(req.body);
-    com.save().then(result => {
+    const sub = new comment ({ text: req.body.text, profunditat:req.body.profunditat, submissionId: req.body.submissionId, ParentId: req.body.parentId ,  user: req.session.user});
+    sub.save().then(result => {
         res.redirect('/')
     })
 }
@@ -26,7 +27,11 @@ const mostrarReplyForm = async (req,res) => {
     const id = req.params.id
     let data = await comment.findById(id);
     let sub = await submission.findById(data.submissionId);
-    console.log(sub)
+    if(data.user){
+        const user = await User.findOne({"_id": data.user})
+        data.username = user.username
+    } else data.username ="undefined"
+    console.log(data);
     res.render('comment', {
         comment: data,
         submission: sub
