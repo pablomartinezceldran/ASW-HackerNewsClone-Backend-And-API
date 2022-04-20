@@ -8,7 +8,7 @@ const mostrarIndex = async (req, res) => {
   for (sub of data) {
     if (sub.user) {
       const user = await User.findOne({ _id: sub.user });
-      sub.username = User.username;
+      sub.username = user.username;
     } else sub.username = "undefined";
   }
   res.render("index", {

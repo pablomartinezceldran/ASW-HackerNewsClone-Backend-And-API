@@ -202,8 +202,9 @@
                   <td style="padding-left: 15px">
 
                       <%= submission.votes %> points | by
-                      <a style=" color: #828282;" href="/user/<%= submission.username%>"
-                        ><%= submission.username%></a>
+                    <a href="/user/<%= submission.username%>"
+                    ><%= submission.username%></a>
+                    <%= console.log(submission.username)%>
                       at <%=submission.createdAt%> %> |
                     <a style="color: #828282;" href="/submission/<%=submission._id%>">
                       comments
