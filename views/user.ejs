@@ -169,7 +169,7 @@
           <td>
             <table>
               <tbody>
-                <td class="nav-links">
+                <tr class="nav-links">
                     <a
                       class="nav-link"
                       href="/user/<%=user.username%>/subms"
@@ -177,9 +177,8 @@
                     >
                         <d class="navText">Submissions</d>
                     </a>
-                  </td>
-                  <br>
-                <td class="nav-links">
+                  </tr>
+                <tr class="nav-links">
                     <a
                       class="nav-link"
                       href="/user/<%=user.username%>/comments"
@@ -189,9 +188,8 @@
                         <d class="navText">Comments</d>
                       </span>
                     </a>
-                  </td>
-                  <br>
-                <td class="nav-links">
+                  </tr>
+                <tr class="nav-links">
                     <a
                       class="nav-link"
                       href="/user/<%=user.username%>/votedsubms"
@@ -201,8 +199,8 @@
                         <d class="navText">Liked Submissions</d>
                       </span>
                     </a>
-                    <br>
-                    <td class="nav-links">
+                </tr>
+                    <tr class="nav-links">
                         <a
                           class="nav-link"
                           href="/user/<%=user.username%>/votedcomments"
@@ -211,8 +209,7 @@
                             <d class="navText">Liked commments</d>
                          
                         </a>
-                      </td>
-                  </td>
+                      </tr>
               </tbody>
             </table>
           </td>

@@ -230,10 +230,24 @@
                 <tr style="height: 10px"></tr>
 
                 <% }else { %>
-                <!--  Aqui los comentarios enteros -->
-                <%=submission.text%>
-
-                <br />
+                  <tr>
+                    <td style="width:40px; padding-top: 0"></td>
+                    <% if(session.user.username == submission.username){ %>
+                    <td><a href="/user/<%= submission.username%>">You (<%= submission.username%>)</a> <%=submission.createdAt%></td>
+                    <% } else{ %>
+                    <td><a href="/user/<%= submission.username%>"><%= submission.username%></a> <%=submission.createdAt%> </td>
+                    <% } %>
+                  </tr>
+                  <tr>
+                    <td style="width:40px;"></td>
+                    <td style="color:black;">
+                      <%= submission.text%>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td style="color:black"><a  href="/comment/<%= submission.id%>" style="padding-left: 0px; color:black;font-size: 11px;"><u>Reply</u></a></td>
+                  </tr>
                 <% }i+=1 %> <% }) %>
               </tbody>
             </table>
