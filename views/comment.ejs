@@ -43,12 +43,25 @@
                 <tbody>
                 <tr>
                     <td>
-                    <form action="/like/<%= comment._id %>" method="POST">
-                        <button style="background-color: transparent; border:none;" id="id<%= 0 %>x" onclick="visualLike('<%= comment._id %>', this.id, 'id<%= 0 %>')">
-                            <img src="/images/triangle.png" width="8" height="8" >
-                        </button>
-                    </form>
-                </td>
+                        <% if(session.user && !session.user.likedsubmissions.includes((comment._id).toString())){ %>
+                            <form action="/likeComment/<%= comment._id %>" method="POST">
+                                <button
+                                        style="background-color: transparent; border: none"
+                                >
+                                    <img src="/images/triangle.png" width="8" height="8" />
+                                </button>
+                            </form>
+                        <% } else if(!session.user){ %>
+                            <form action="/like/<%= comment._id %>" method="POST">
+                                <button
+                                        style="background-color: transparent; border: none"
+                                >
+                                    <img src="/images/triangle.png" width="8" height="8" />
+                                </button>
+                            </form>
+                        <% } else{ %>
+                        <% } %>
+                    </td>
                 <td class = "nav-links" style = "padding-left: 15px; padding-top: 10px">
                     <a href="/user/<%= comment.username%>"
                     ><%= comment.username%></a>
@@ -57,12 +70,23 @@
                         <d>parent</d>
                     </a>  |
                 </td>
-                <td>
-                    <form action="/unlike/<%= submission._id %>" method="POST">
-                        <button style=" height:8px; background-color: transparent; border: none; color:#828282; padding-top: 8px" id="id<%= 0 %>"
-                                onclick="visualUnlike('<%= submission._id %>', this.id, this.id+'x')"><d>Unlike</d></button>
-                    </form>
-                </td>
+                    <td>
+
+                        <% if(session.user  && session.user.likedsubmissions.includes((comment._id).toString())){ %>
+                            <form action="/unlikeComment/<%= comment._id %>" method="POST">
+                                <button
+                                        style="
+                          height: 7px;
+                          background-color: transparent;
+                          border: none;
+                          color: #828282;
+                           " id="id<%= i %>">
+                                    <d>Unlike</d>
+                                </button>
+                            </form>
+                        <% } else{ %>
+                        <% } %>
+                    </td>
             </tr>
             <tr>
                 <td></td>
