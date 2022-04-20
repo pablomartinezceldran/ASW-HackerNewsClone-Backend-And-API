@@ -1,4 +1,8 @@
 const User = require("../models/user");
+const submission = require("../models/submissions");
+const comments = require("../models/comments");
+const submissions = require("../models/submissions");
+
 
 const mostrarFormLogin = async (req, res) => {
   res.render("login");
@@ -51,14 +55,88 @@ const tancarSessio = async (req, res) => {
 
 const mostrarUser = async (req, res) => {
   var id = req.params.id;
-  console.log("aaaaaaaaaaaaaaaaaa");
-  await User.find({username: id})
+  await User.findOne({username: id})
     .then((user) => {
-      console.log("-------------------");
-      res.render("user", {
-      user: user,
-      session: req.session
-  });
+      if (user){
+         res.render("user", {
+          user: user,
+         session: req.session
+         });
+      }else res.render('error')
+    })
+};
+
+const mostrarSubmsUser= async (req, res) => {
+  var u = req.params.id;
+  await User.findOne({username: u})
+    .then(async (user) => {
+      if (user){
+        let data = await submission.find({user: user._id});
+         res.render("userOptions", {
+          submissions: data,
+          user: user,
+          param: 'submissions',
+         session: req.session
+         });
+      }else res.render('error')
+    })
+};
+
+const mostrarComsUser = async (req, res) => {
+  var u = req.params.id;
+  await User.findOne({username: u})
+    .then(async (user) => {
+      if (user){
+        let data = await comments.find({user: user._id});
+         res.render("userOptions", {
+          submissions: data,
+          user: user,
+          param: 'comments',
+         session: req.session
+         });
+      }else res.render('error')
+    })
+};
+
+const mostrarLikedSubmsUser = async (req, res) => {
+  var id = req.params.id;
+  let data=[]
+  await User.findOne({username: id})
+    .then(async(user) => {
+      if (user){
+        if (typeof user.likedsubmissions !== "undefined") {
+          for(liked of user.likedsubmissions) {
+              data.push(await submissions.findById(liked))
+           }
+       }
+        res.render("userOptions", {
+          submissions: data,
+          user: user,
+          param: 'liked submissions',
+         session: req.session
+         });
+      }else res.render('error')
+    })
+};
+
+const mostrarLikedCommsUser = async (req, res) => {
+  var id = req.params.id;
+  let data=[]
+  await User.findOne({username: id})
+    .then(async(user) => {
+      if (user){
+        if (typeof user.likedcomments !== "undefined") {
+           for(liked of user.likedcomments) {
+               data.push(await comments.findById(liked))
+            }
+        }
+        res.render("userOptions", {
+          submissions: data,
+          user: user,
+          param: 'liked comments',
+         session: req.session
+         });
+      }else res.render('error')
     })
 };
 
@@ -68,5 +146,9 @@ module.exports = {
   mostrarFormSignup,
   iniciaSessio,
   tancarSessio,
-  mostrarUser
+  mostrarUser,
+  mostrarSubmsUser,
+  mostrarComsUser,
+  mostrarLikedSubmsUser,
+  mostrarLikedCommsUser
 };
