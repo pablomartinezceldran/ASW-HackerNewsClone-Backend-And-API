@@ -263,38 +263,33 @@
               </tbody>
             </table>
             <table>
-              <tbody>
-                <% comments.forEach( (comment)=>{ %> <% var pad = 0 %> <%
-                for(var i=0; i < comment.profunditat; i++) { %> <% var pad =
-                pad+ 100 %> <% } %>
-                <tr>
-                  <td style="width: 40px"></td>
-                  <td style="padding-left: <%=pad%>px">
-                    <a href="/user/<%= comment.username%>"
-                      ><%= comment.username%></a
-                    >
-                    created X minutes ago
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 40px"></td>
-                  <td style="color: black; padding-left: <%=pad%>px">
-                    <%= comment.text%>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td style="color: black; padding-left: <%=pad%>px">
-                    <a
-                      href="/comment/<%= comment.id%>"
-                      style="padding-left: 0px; color: black; font-size: 11px"
-                      ><u>Reply</u></a
-                    >
-                  </td>
-                </tr>
-                <tr style="height: 10px"></tr>
-                <% }) %>
-              </tbody>
+                <tbody>
+                    <% comments.forEach( (comment)=>{ %>
+                        <% var pad = 0 %>
+                        <% for(var i=0; i < comment.profunditat; i++) { %>
+                            <% var pad = pad+ 100 %>
+                        <% } %>
+                        <tr>
+                            <td style="width:40px;"></td>
+                            <% if(session.user.username == comment.username){ %>
+                               <td style="padding-left: <%=pad%>px"><a href="/user/<%= comment.username%>">You (<%= comment.username%>)</a> <%=comment.createdAt%></td>
+                            <% } else{ %>
+                                <td style="padding-left: <%=pad%>px"><a href="/user/<%= comment.username%>"><%= comment.username%></a> <%=comment.createdAt%> </td>
+                            <% } %>
+                        </tr>
+                        <tr>
+                        <td style="width:40px;"></td>
+                        <td style="color:black;padding-left: <%=pad%>px">
+                            <%= comment.text%>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="color:black;padding-left: <%=pad%>px"><a  href="/comment/<%= comment.id%>" style="padding-left: 0px; color:black;font-size: 11px;"><u>Reply</u></a></td>
+                        </tr>
+                        <tr style="height: 10px;"></tr>
+                    <% }) %>
+                </tbody>
             </table>
           </td>
         </tr>

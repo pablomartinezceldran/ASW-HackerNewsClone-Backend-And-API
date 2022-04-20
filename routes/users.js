@@ -58,4 +58,12 @@ router.get(
   }
 );
 
+router.get("/user/:id/subms", userController.mostrarSubmsUser);
+
+router.get("/user/:id/comments", userController.mostrarComsUser);
+
+router.get("/user/:id/votedsubms", userController.mostrarLikedSubmsUser);
+
+router.get("/user/:id/votedcomments", userController.mostrarLikedCommsUser);
+
 module.exports = router;
