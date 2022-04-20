@@ -171,9 +171,9 @@
           <td>
             <table>
               <tbody>
-                <% var i=1 %> <% submissions.forEach( (submission)=>{ %> 
-                  <%if (param != 'comments' && param !='liked comments') {%>
-                    
+                <% var i=1 %> <% submissions.forEach( (submission)=>{ %> <%if
+                (param != 'comments' && param !='liked comments') {%>
+
                 <tr style="height: 15px"></tr>
                 <tr style="padding-bottom: 0px">
                   <td><%=i%>.</td>
@@ -190,12 +190,11 @@
                   </td>
                   <td style="padding-left: 15px">
                     <p>
-                      <a  href="<%= submission.url%>">
+                      <a href="<%= submission.url%>">
                         <%= submission.title%>
                       </a>
-                      <% if (submission.subType=='url') {%>
-                        (<%= submission.url%>)
-                        <% } %>
+                      <% if (submission.subType=='url') {%> (<%=
+                      submission.url%>) <% } %>
                     </p>
                   </td>
                 </tr>
@@ -203,14 +202,13 @@
                   <td></td>
                   <td></td>
                   <td style="padding-left: 15px">
-                      <%= submission.votes %> points | by
-                      <a href="/user/<%= submission.username%>"
-                        ><%= submission.username%></a>
-                      at <%=submission.createdAt%> %> |
-                    <a href="/submission/<%=submission._id%>">
-                      comment
-                    </a>
-                     |
+                    <%= submission.votes %> points | by
+                    <a href="/user/<%= submission.username%>"
+                      ><%= submission.username%></a
+                    >
+                    at <%=submission.createdAt%> %> |
+                    <a href="/submission/<%=submission._id%>"> comment </a>
+                    |
                   </td>
                   <td>
                     <form action="/unlike/<%= submission._id %>" method="POST">
@@ -230,11 +228,13 @@
                   </td>
                 </tr>
                 <tr style="height: 10px"></tr>
-                <% }else { %>
 
-                  DISPLAY COMMENTS
-                <% }i+=1  %> 
-                <% }) %>
+                <% }else { %>
+                <!--  Aqui los comentarios enteros -->
+                <%=submission.text%>
+
+                <br />
+                <% }i+=1 %> <% }) %>
               </tbody>
             </table>
           </td>
