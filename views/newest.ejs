@@ -203,7 +203,13 @@
                       ><%= submission.username%></a
                     >
                     at <%=submission.createdAt%> %> |
-                    <a href="/submission/<%=submission._id%>"> comment </a>
+                    <a href="/submission/<%=submission._id%>"> 
+                      <% if (submission.numcomments==0){ %>
+                        discuss
+                      <% } else {%>
+                        <%=submission.numcomments%> comments
+                        <% }%>
+                    </a>
                     |
                   </td>
                   <td>
