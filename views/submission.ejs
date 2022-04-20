@@ -178,7 +178,7 @@
                         </td>
                         <td style="padding-left: 15px; padding-top: 15px;">
                             <p>
-                                <a  style="color: black;" href="/submission/<%= subtree._id %>">
+                                <a  style="color: black;" href="<%= subtree.url%>">
                                     <%= subtree.title%>
                                 </a>
                                 (<%= subtree.url%>)</p>
@@ -197,6 +197,12 @@
                                 <button style=" height:7px; background-color: transparent; border: none; color:#828282;" id="id<%= 0 %>"
                                         onclick="visualUnlike('<%= subtree._id %>', this.id, this.id+'x')"><d>Unlike</d></button>
                             </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="padding-left: 15px;">
+                            <%=subtree.text%>
                         </td>
                     </tr>
                     <tr style="height: 15px"></tr>
