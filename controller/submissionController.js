@@ -1,3 +1,4 @@
+
 const submission = require("../models/submissions");
 const comment = require("../models/comments");
 const User = require("../models/user");
@@ -205,7 +206,44 @@ const donalike = async (req, res) => {
       res.render("error");
     });
 };
-
+const donalikeNew = async (req, res) => {
+  const id = req.params.id;
+  let u = req.session.user;
+  await submission
+      .findById(id)
+      .then(async (result) => {
+        await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
+        result.votes += 1;
+        result.save();
+        req.session.user.likedsubmissions.push(id);
+        console.log("sumado");
+        res.redirect("/newest");
+      })
+      .catch((err) => {
+        res.render("error");
+      });
+};
+const treulikeNew = async (req, res) => {
+  const id = req.params.id;
+  let u = req.session.user;
+  await submission
+      .findById(id)
+      .then(async (result) => {
+        await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
+        result.votes -= 1;
+        result.save();
+        console.log("sumado1");
+        req.session.user.likedsubmissions.splice(
+            req.session.user.likedsubmissions.indexOf(id),
+            1
+        );
+        console.log("noooo");
+        res.redirect("/newest");
+      })
+      .catch((err) => {
+        res.render("error");
+      });
+};
 const treulike = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
@@ -242,4 +280,6 @@ module.exports = {
   treulike,
   mostrarSubmissionTree,
   mostrarAsk,
+  donalikeNew,
+  treulikeNew,
 };
