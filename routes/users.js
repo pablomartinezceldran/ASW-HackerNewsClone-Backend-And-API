@@ -35,6 +35,16 @@ router.get("/signup", loggedIn, userController.mostrarFormSignup);
 
 router.post("/signup", loggedIn, userController.createUser);
 
-router.get("/user/:id", auth, userController.mostrarUser);
+router.get("/user/:id", userController.mostrarUser);
+
+router.get("/user/:id/subms", userController.mostrarSubmsUser);
+
+router.get("/user/:id/comments", userController.mostrarComsUser);
+
+router.get("/user/:id/votedsubms", userController.mostrarLikedSubmsUser);
+
+router.get("/user/:id/votedcomments", userController.mostrarLikedCommsUser);
+
+
 
 module.exports = router;

@@ -159,6 +159,8 @@
                       </span>
                     </a>
                   </td>
+                  <td class="navText">|</td>
+                  <td class="navText-Current"><%=user.username%> <%=param%></td>
                 </tr>
               </tbody>
             </table>
@@ -169,50 +171,70 @@
           <td>
             <table>
               <tbody>
-                <td class="nav-links">
-                    <a
-                      class="nav-link"
-                      href="/user/<%=user.username%>/subms"
-                      style="padding-left: 2px; padding-right: 2px"
-                    >
-                        <d class="navText">Submissions</d>
-                    </a>
+                <% var i=1 %> <% submissions.forEach( (submission)=>{ %> 
+                  <%if (param != 'comments' && param !='liked comments') {%>
+                    
+                <tr style="height: 15px"></tr>
+                <tr style="padding-bottom: 0px">
+                  <td><%=i%>.</td>
+                  <td>
+                    <form action="/like/<%= submission._id %>" method="POST">
+                      <button
+                        style="background-color: transparent; border: none"
+                        id="id<%= i %>x"
+                        onclick="visualLike('<%= submission._id %>', this.id, 'id<%= i %>')"
+                      >
+                        <img src="/images/triangle.png" width="8" height="8" />
+                      </button>
+                    </form>
                   </td>
-                  <br>
-                <td class="nav-links">
-                    <a
-                      class="nav-link"
-                      href="/user/<%=user.username%>/comments"
-                      style="padding-left: 2px; padding-right: 2px"
-                    >
-                      <span class="page-top">
-                        <d class="navText">Comments</d>
-                      </span>
-                    </a>
+                  <td style="padding-left: 15px">
+                    <p>
+                      <a  href="<%= submission.url%>">
+                        <%= submission.title%>
+                      </a>
+                      <% if (submission.subType=='url') {%>
+                        (<%= submission.url%>)
+                        <% } %>
+                    </p>
                   </td>
-                  <br>
-                <td class="nav-links">
-                    <a
-                      class="nav-link"
-                      href="/user/<%=user.username%>/votedsubms"
-                      style="padding-left: 2px; padding-right: 2px"
-                    >
-                      <span class="page-top">
-                        <d class="navText">Liked Submissions</d>
-                      </span>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td style="padding-left: 15px">
+                      <%= submission.votes %> points | by
+                      <a href="/user/<%= submission.username%>"
+                        ><%= submission.username%></a>
+                      at <%=submission.createdAt%> %> |
+                    <a href="/submission/<%=submission._id%>">
+                      comment
                     </a>
-                    <br>
-                    <td class="nav-links">
-                        <a
-                          class="nav-link"
-                          href="/user/<%=user.username%>/votedcomments"
-                          style="padding-left: 2px; padding-right: 2px"
-                        >
-                            <d class="navText">Liked commments</d>
-                         
-                        </a>
-                      </td>
+                     |
                   </td>
+                  <td>
+                    <form action="/unlike/<%= submission._id %>" method="POST">
+                      <button
+                        style="
+                          height: 7px;
+                          background-color: transparent;
+                          border: none;
+                          color: #828282;
+                        "
+                        id="id<%= i %>"
+                        onclick="visualUnlike('<%= submission._id %>', this.id, this.id+'x')"
+                      >
+                        <d>Unlike</d>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                <tr style="height: 10px"></tr>
+                <% }else { %>
+
+                  DISPLAY COMMENTS
+                <% }i+=1  %> 
+                <% }) %>
               </tbody>
             </table>
           </td>
