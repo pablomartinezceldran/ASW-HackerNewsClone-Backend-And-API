@@ -56,7 +56,7 @@ const donalike = async (req,res) => {
             result.save()
             req.session.user.likedcomments.push(id)
             console.log("sumado");
-            res.redirect('/submission/' + result.submissionId);
+            res.redirect('/comment/' + id);
         }).catch(err => {
             res.render('error')
         });
@@ -73,7 +73,7 @@ const treulike = async (req,res) => {
             console.log("sumado1");
             req.session.user.likedcomments.splice(req.session.user.likedcomments.indexOf(id), 1)
             console.log('noooo')
-            res.redirect('/submission/' + result.submissionId)
+            res.redirect('/comment/' + id)
         }).catch(err => {
             res.render('error')
         });
