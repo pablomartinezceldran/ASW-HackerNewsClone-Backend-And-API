@@ -31,10 +31,12 @@ router.get("/ask", submissionController.mostrarAsk);
 router.get("/submission/:id", submissionController.mostrarSubmissionTree);
 
 router.post('/like/:id', redirectLogin, submissionController.donalike);
+router.post('/likeNew/:id', redirectLogin, submissionController.donalikeNew);
 
 router.post('/likeComment/:id', redirectLogin, commentController.donalike);
 
 router.post('/unlike/:id', redirectLogin, submissionController.treulike);
+router.post('/unlikeNew/:id', redirectLogin, submissionController.treulikeNew);
 
 router.post('/unlikeComment/:id', redirectLogin, commentController.treulike);
 
