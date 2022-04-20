@@ -302,6 +302,38 @@ const treulikeSub = async (req, res) => {
         res.render("error");
       });
 };
+const donalikeCom = async (req,res) => {
+  const id = req.params.id;
+  let u = req.session.user;
+  await comment.findById(id)
+      .then ( async result => {
+        await User.updateOne({"_id": u._id},{$push: {likedcomments: id}})
+        result.votes+=1
+        result.save()
+        req.session.user.likedcomments.push(id)
+        console.log("sumado");
+        res.redirect('/submission/' + id);
+      }).catch(err => {
+        res.render('error')
+      });
+}
+
+const treulikeCom = async (req,res) => {
+  const id = req.params.id;
+  let u = req.session.user;
+  await comment.findById(id)
+      .then ( async result => {
+        await User.updateOne({"_id": u._id},{$pull: {likedcomments: id}})
+        result.votes-=1
+        result.save()
+        console.log("sumado1");
+        req.session.user.likedcomments.splice(req.session.user.likedcomments.indexOf(id), 1)
+        console.log('noooo')
+        res.redirect('/submission/' + id)
+      }).catch(err => {
+        res.render('error')
+      });
+}
 
 const mostrarThreads = async (req, res) => {
   console.log(req.session.user.username);
@@ -337,5 +369,7 @@ module.exports = {
   treulikeNew,
   donalikeSub,
   treulikeSub,
+  donalikeCom,
+  treulikeCom,
 
 };
