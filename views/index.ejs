@@ -200,8 +200,9 @@
                   <td></td>
                   <td></td>
                   <td style="padding-left: 15px">
+
                       <%= submission.votes %> points | by
-                      <a href="/user/<%= submission.username%>"
+                      <a style=" color: #828282;" href="/user/<%= submission.username%>"
                         ><%= submission.username%></a>
                       at <%=submission.createdAt%> %> |
                     <a style="color: #828282;" href="/submission/<%=submission._id%>">
@@ -209,22 +210,16 @@
                     </a>
                      |
                   </td>
-                  <td>
-
+                    <td>
                     <% if(session.user  && session.user.likedsubmissions.includes((submission._id).toString())){ %>
                       <form action="/unlike/<%= submission._id %>" method="POST">
-                        <button
-                                style="
-                          height: 7px;
-                          background-color: transparent;
-                          border: none;
-                          color: #828282;
-                           " id="id<%= i %>">
+                        <button style="height: 7px;background-color: transparent;border: none;color: #828282;" id="id<%= i %>">
                           <d>Unlike</d>
                         </button>
                       </form>
                     <% } else{ %>
                     <% } %>
+
                   </td>
                 </tr>
                 <tr style="height: 10px"></tr>
