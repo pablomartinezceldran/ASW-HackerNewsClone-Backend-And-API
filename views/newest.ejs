@@ -216,7 +216,8 @@
                       <a style="color:black" href="/submission/<%= submission._id %>">
                         <%= submission.title%>
                       </a>
-                      (<%= submission.url%>)
+                      <% if (submission.subType=='url') {%> (<%=
+                        submission.url%>) <% } %>
                     </p>
                   </td>
                 </tr>
