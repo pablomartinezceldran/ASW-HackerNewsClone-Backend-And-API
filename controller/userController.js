@@ -83,7 +83,7 @@ const mostrarComsUser = async (req, res) => {
   await User.findOne({ username: u }).then(async (user) => {
     if (user) {
       let data = await comments.find({ user: user._id });
-      res.render("/threads", {
+      res.render("userOptions", {
         submissions: data,
         user: user,
         param: "comments",
