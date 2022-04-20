@@ -238,6 +238,7 @@ const treulikeNew = async (req, res) => {
         res.render("error");
       });
 };
+
 const treulike = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
@@ -276,4 +277,5 @@ module.exports = {
   mostrarAsk,
   donalikeNew,
   treulikeNew,
+
 };
