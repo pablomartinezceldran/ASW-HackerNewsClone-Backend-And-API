@@ -34,9 +34,44 @@ const mostrarReplyForm = async (req,res) => {
     console.log(data);
     res.render('comment', {
         comment: data,
-        submission: sub
+        submission: sub,
+        session: req.session
     })
 }
+
+const donalike = async (req,res) => {
+    const id = req.params.id;
+    let u = req.session.user;
+    await comment.findById(id)
+        .then ( async result => {
+            await User.updateOne({"_id": u._id},{$push: {likedcomments: id}})
+            result.votes+=1
+            result.save()
+            req.session.user.likedcomments.push(id)
+            console.log("sumado");
+            res.redirect('/submission/' + result.submissionId);
+        }).catch(err => {
+            res.render('error')
+        });
+}
+
+const treulike = async (req,res) => {
+    const id = req.params.id;
+    let u = req.session.user;
+    await comment.findById(id)
+        .then ( async result => {
+            await User.updateOne({"_id": u._id},{$pull: {likedcomments: id}})
+            result.votes-=1
+            result.save()
+            console.log("sumado1");
+            req.session.user.likedcomments.splice(req.session.user.likedcomments.indexOf(id), 1)
+            console.log('noooo')
+            res.redirect('/submission/' + result.submissionId)
+        }).catch(err => {
+            res.render('error')
+        });
+}
+
 
 const mostrarPerSubmission = async (req,res) => {
     const id = req.params.id;
@@ -53,5 +88,7 @@ module.exports ={
     mostrarCommentForm,
     mostrarPerSubmission,
     createReply,
-    mostrarReplyForm
+    mostrarReplyForm,
+    donalike,
+    treulike
 }

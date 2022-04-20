@@ -14,6 +14,12 @@ var userSchema = new mongoose.Schema({
         ref: 'submissions',
         default: null
   }],
+
+  likedcomments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'submissions',
+      default: null
+  }],
   
   date: {
     type: Date,
