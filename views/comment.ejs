@@ -8,6 +8,7 @@
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/css/navbar.css"/>
+    <link rel="shortcut icon" href="/images/y18.jpeg">
     <title>Hacker News</title>
 </head>
 
@@ -42,8 +43,8 @@
             <table>
                 <tbody>
                 <tr>
-                    <td>
-                        <% if(session.user && !session.user.likedsubmissions.includes((comment._id).toString())){ %>
+                    <td style="width: 18px;">
+                        <% if(session.user && !session.user.likedcomments.includes((comment._id).toString())){ %>
                             <form action="/likeComment/<%= comment._id %>" method="POST">
                                 <button
                                         style="background-color: transparent; border: none"
@@ -70,17 +71,17 @@
                         <d>parent</d>
                     </a>  |
                 </td>
-                    <td>
+                    <td style="padding-top: 12px;">
 
-                        <% if(session.user  && session.user.likedsubmissions.includes((comment._id).toString())){ %>
+                        <% if(session.user  && session.user.likedcomments.includes((comment._id).toString())){ %>
                             <form action="/unlikeComment/<%= comment._id %>" method="POST">
                                 <button
                                         style="
-                          height: 7px;
+
                           background-color: transparent;
                           border: none;
                           color: #828282;
-                           " id="id<%= i %>">
+                           " >
                                     <d>Unlike</d>
                                 </button>
                             </form>
