@@ -6,11 +6,16 @@ var validUrl = require("valid-url");
 
 const mostrarIndex = async (req, res) => {
   let data = await submission.find().sort({ votes: -1 });
-  for (sub of data) {
-    if (sub.user) {
-      const user = await User.findOne({ _id: sub.user });
-      sub.username = user.username;
-    } else sub.username = "undefined";
+  if (data.length > 0) {
+    for (sub of data) {
+      if (sub.user) {
+        await User.findOne({ _id: sub.user }).then((result) => {
+          if (result) {
+            sub.username = result.username;
+          }
+        });
+      } else sub.username = "undefined";
+    }
   }
   res.render("index", {
     submissions: data,
@@ -300,6 +305,21 @@ const treulikeSub = async (req, res) => {
       });
 };
 
+const mostrarThreads = async (req, res) => {
+  console.log(req.session.user.username);
+  var u = req.session.user.username;
+  await User.findOne({ username: u }).then(async (user) => {
+    if (user) {
+      let data = await comment.find({ user: user._id });
+      res.render("threads", {
+        submissions: data,
+        user: user,
+        session: req.session,
+      });
+    } else res.render("error");
+  });
+};
+
 const upddateSubmisson = (req, res) => {};
 
 const deleteSubmisson = (req, res) => {};
@@ -314,6 +334,7 @@ module.exports = {
   treulike,
   mostrarSubmissionTree,
   mostrarAsk,
+  mostrarThreads,
   donalikeNew,
   treulikeNew,
   donalikeSub,
