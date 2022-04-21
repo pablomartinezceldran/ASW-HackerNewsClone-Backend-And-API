@@ -191,15 +191,27 @@
                 <tr style="padding-bottom: 0px">
                   <td><%=i%>.</td>
                   <td>
-                    <form action="/like/<%= submission._id %>" method="POST">
-                      <button
-                        style="background-color: transparent; border: none"
-                        id="id<%= i %>x"
-                        onclick="visualLike('<%= submission._id %>', this.id, 'id<%= i %>')"
-                      >
-                        <img src="/images/triangle.png" width="8" height="8" />
-                      </button>
-                    </form>
+                    <% if(session.user &&
+                            !session.user.likedsubmissions.includes((submission._id).toString())){
+                    %>
+                      <form action="/like/<%= submission._id %>" method="POST">
+                        <button
+                                style="background-color: transparent; border: none"
+                                id="id<%= i %>x"
+                        >
+                          <img src="/images/triangle.png" width="8" height="8" />
+                        </button>
+                      </form>
+                    <% } else if(!session.user){ %>
+                      <form action="/like/<%= submission._id %>" method="POST">
+                        <button
+                                style="background-color: transparent; border: none"
+                                id="id<%= i %>x"
+                        >
+                          <img src="/images/triangle.png" width="8" height="8" />
+                        </button>
+                      </form>
+                    <% } else{ %> <% } %>
                   </td>
                   <td style="padding-left: 15px">
                     <p>
@@ -228,20 +240,23 @@
                     |
                   </td>
                   <td>
-                    <form action="/unlike/<%= submission._id %>" method="POST">
-                      <button
-                        style="
+                    <% if(session.user &&
+                            session.user.likedsubmissions.includes((submission._id).toString())){
+                    %>
+                      <form action="/unlike/<%= submission._id %>" method="POST">
+                        <button
+                                style="
                           height: 7px;
                           background-color: transparent;
                           border: none;
                           color: #828282;
                         "
-                        id="id<%= i %>"
-                        onclick="visualUnlike('<%= submission._id %>', this.id, this.id+'x')"
-                      >
-                        <d>Unlike</d>
-                      </button>
-                    </form>
+                                id="id<%= i %>"
+                        >
+                          <d>Unlike</d>
+                        </button>
+                      </form>
+                    <% } else{ %> <% } %>
                   </td>
                 </tr>
                 <tr style="height: 10px"></tr>
