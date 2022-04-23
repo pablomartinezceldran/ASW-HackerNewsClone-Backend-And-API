@@ -1,8 +1,9 @@
-
 const submission = require("../models/submissions");
 const comment = require("../models/comments");
 const User = require("../models/user");
 var validUrl = require("valid-url");
+const { isRequired } = require("nodemon/lib/utils");
+const { resetWatchers } = require("nodemon/lib/monitor/watch");
 
 const mostrarIndex = async (req, res) => {
   let data = await submission.find().sort({ votes: -1 });
@@ -130,6 +131,8 @@ const createSubmisson = async (req, res) => {
   var url = req.body.url;
   var text = req.body.text;
   var message = [];
+
+  //no url ni ask -> mostrar error
   if (!url && !text) {
     message.push("Inserta url o text");
     res.render("submit", {
@@ -140,49 +143,92 @@ const createSubmisson = async (req, res) => {
         text: text,
       },
     });
-  } else {
-    if (url) {
-      const sub = new submission({
-        url: url,
-        title: title,
-        user: req.session.user,
-        subType: "url",
-      });
-      if (validUrl.isUri(sub.url)) {
-        submission.countDocuments(
-          { url: sub.url },
-          async function (err, count) {
-            if (count > 0) {
-              var existent = await submission.findOne({ url: sub.url });
-              console.log("Soc Repetit");
-              res.redirect("/submission/" + existent.id);
-            } else {
-              sub.save().then((result) => {});
-            }
-          }
-        );
-      } else message.push("El texto introducido en URL no es una URL");
-    }
-  }
-  if (text) {
+  } else if (text && !url) {
+    // crear submission tipo ask
     const sub = new submission({
       text: text,
       title: title,
       user: req.session.user,
       subType: "ask",
     });
-    sub.save().then((result) => {});
-  }
-  if (message.length == 0) res.redirect("/");
-  else {
-    res.render("submit", {
-      errorMessage: message,
-      formData: {
-        title: title,
-        url: url,
-        text: text,
-      },
+    sub.save().then((result) => {
+      res.redirect("/submission/" + result.id);
     });
+  } else if (url) {
+    //url no valida
+    if (!validUrl.isUri(url)) {
+      message.push("El texto introducido en URL no es una URL");
+      res.render("submit", {
+        errorMessage: message,
+        formData: {
+          title: title,
+          url: url,
+          text: text,
+        },
+      });
+      // url valida
+    } else {
+      var existent = await submission.findOne({ url: url });
+      if (existent) {
+        // url ya existe -> mostrar sub
+        if (!text) {
+          res.redirect("/submission/" + existent.id);
+        }
+        //crea comment en la sub existente con esta url
+        else {
+          const newCom = new comment({
+            text: text,
+            submissionId: existent.id,
+            user: req.session.user,
+          });
+          newCom.save();
+          res.redirect("/submission/" + existent.id);
+        }
+      }
+      // no existe sub con esta url
+      else {
+        //crear sub tipo url
+        if (!text) {
+          const newSub = new submission({
+            url: url,
+            title: title,
+            user: req.session.user,
+            subType: "url",
+          });
+          newSub.save().then((result) => {
+            res.redirect("/submission/" + result.id);
+          });
+        }
+        // crear sub tipo url con comment de txt y ask
+        else {
+          //crea sub tipo ask
+          const subAsk = new submission({
+            text: text,
+            title: title,
+            user: req.session.user,
+            subType: "ask",
+          });
+          subAsk.save();
+          // crea sub tipo url con comment
+          const subUrl = new submission({
+            url: url,
+            title: title,
+            user: req.session.user,
+            subType: "url",
+          });
+          subUrl.save().then((result) => {
+            //crear el comment
+            const newCom = new comment({
+              text: text,
+              submissionId: result.id,
+              user: req.session.user,
+            });
+            newCom.save();
+            res.redirect("/submission/" + result.id);
+          });
+        }
+      }
+    }
   }
 };
 
@@ -203,61 +249,62 @@ const donalike = async (req, res) => {
       res.render("error");
     });
 };
+
 const donalikeSub = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
   await submission
-      .findById(id)
-      .then(async (result) => {
-        await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
-        result.votes += 1;
-        result.save();
-        req.session.user.likedsubmissions.push(id);
-        console.log("sumado");
-        res.redirect("/submission/"+id);
-      })
-      .catch((err) => {
-        res.render("error");
-      });
+    .findById(id)
+    .then(async (result) => {
+      await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
+      result.votes += 1;
+      result.save();
+      req.session.user.likedsubmissions.push(id);
+      console.log("sumado");
+      res.redirect("/submission/" + id);
+    })
+    .catch((err) => {
+      res.render("error");
+    });
 };
 
 const donalikeNew = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
   await submission
-      .findById(id)
-      .then(async (result) => {
-        await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
-        result.votes += 1;
-        result.save();
-        req.session.user.likedsubmissions.push(id);
-        console.log("sumado");
-        res.redirect("/newest");
-      })
-      .catch((err) => {
-        res.render("error");
-      });
+    .findById(id)
+    .then(async (result) => {
+      await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
+      result.votes += 1;
+      result.save();
+      req.session.user.likedsubmissions.push(id);
+      console.log("sumado");
+      res.redirect("/newest");
+    })
+    .catch((err) => {
+      res.render("error");
+    });
 };
 const treulikeNew = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
   await submission
-      .findById(id)
-      .then(async (result) => {
-        await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
-        result.votes -= 1;
-        result.save();
-        console.log("sumado1");
-        req.session.user.likedsubmissions.splice(
-            req.session.user.likedsubmissions.indexOf(id),
-            1
-        );
-        console.log("noooo");
-        res.redirect("/newest");
-      })
-      .catch((err) => {
-        res.render("error");
-      });
+    .findById(id)
+    .then(async (result) => {
+      await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
+      result.votes -= 1;
+      result.save();
+      console.log("sumado1");
+      req.session.user.likedsubmissions.splice(
+        req.session.user.likedsubmissions.indexOf(id),
+        1
+      );
+      console.log("noooo");
+      res.redirect("/newest");
+    })
+    .catch((err) => {
+      res.render("error");
+    });
 };
 
 const treulike = async (req, res) => {
@@ -285,55 +332,62 @@ const treulikeSub = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
   await submission
-      .findById(id)
-      .then(async (result) => {
-        await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
-        result.votes -= 1;
-        result.save();
-        console.log("sumado1");
-        req.session.user.likedsubmissions.splice(
-            req.session.user.likedsubmissions.indexOf(id),
-            1
-        );
-        console.log("noooo");
-        res.redirect("/submission/"+id);
-      })
-      .catch((err) => {
-        res.render("error");
-      });
+    .findById(id)
+    .then(async (result) => {
+      await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
+      result.votes -= 1;
+      result.save();
+      console.log("sumado1");
+      req.session.user.likedsubmissions.splice(
+        req.session.user.likedsubmissions.indexOf(id),
+        1
+      );
+      console.log("noooo");
+      res.redirect("/submission/" + id);
+    })
+    .catch((err) => {
+      res.render("error");
+    });
 };
-const donalikeCom = async (req,res) => {
+const donalikeCom = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
-  await comment.findById(id)
-      .then ( async result => {
-        await User.updateOne({"_id": u._id},{$push: {likedcomments: id}})
-        result.votes+=1
-        result.save()
-        req.session.user.likedcomments.push(id)
-        console.log("sumado");
-        res.redirect('/submission/' + id);
-      }).catch(err => {
-        res.render('error')
-      });
-}
+  await comment
+    .findById(id)
+    .then(async (result) => {
+      await User.updateOne({ _id: u._id }, { $push: { likedcomments: id } });
+      result.votes += 1;
+      result.save();
+      req.session.user.likedcomments.push(id);
+      console.log("sumado");
+      res.redirect("/submission/" + id);
+    })
+    .catch((err) => {
+      res.render("error");
+    });
+};
 
-const treulikeCom = async (req,res) => {
+const treulikeCom = async (req, res) => {
   const id = req.params.id;
   let u = req.session.user;
-  await comment.findById(id)
-      .then ( async result => {
-        await User.updateOne({"_id": u._id},{$pull: {likedcomments: id}})
-        result.votes-=1
-        result.save()
-        console.log("sumado1");
-        req.session.user.likedcomments.splice(req.session.user.likedcomments.indexOf(id), 1)
-        console.log('noooo')
-        res.redirect('/submission/' + id)
-      }).catch(err => {
-        res.render('error')
-      });
-}
+  await comment
+    .findById(id)
+    .then(async (result) => {
+      await User.updateOne({ _id: u._id }, { $pull: { likedcomments: id } });
+      result.votes -= 1;
+      result.save();
+      console.log("sumado1");
+      req.session.user.likedcomments.splice(
+        req.session.user.likedcomments.indexOf(id),
+        1
+      );
+      console.log("noooo");
+      res.redirect("/submission/" + id);
+    })
+    .catch((err) => {
+      res.render("error");
+    });
+};
 
 const mostrarThreads = async (req, res) => {
   console.log(req.session.user.username);
@@ -371,5 +425,4 @@ module.exports = {
   treulikeSub,
   donalikeCom,
   treulikeCom,
-
 };
