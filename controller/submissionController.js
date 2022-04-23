@@ -334,6 +334,44 @@ const treulikeCom = async (req,res) => {
         res.render('error')
       });
 }
+const donalikeAsk = async (req, res) => {
+    const id = req.params.id;
+    let u = req.session.user;
+    await submission
+        .findById(id)
+        .then(async (result) => {
+            await User.updateOne({ _id: u._id }, { $push: { likedsubmissions: id } });
+            result.votes += 1;
+            result.save();
+            req.session.user.likedsubmissions.push(id);
+            console.log("sumado");
+            res.redirect("/ask");
+        })
+        .catch((err) => {
+            res.render("error");
+        });
+};
+const treulikeAsk = async (req, res) => {
+    const id = req.params.id;
+    let u = req.session.user;
+    await submission
+        .findById(id)
+        .then(async (result) => {
+            await User.updateOne({ _id: u._id }, { $pull: { likedsubmissions: id } });
+            result.votes -= 1;
+            result.save();
+            console.log("sumado1");
+            req.session.user.likedsubmissions.splice(
+                req.session.user.likedsubmissions.indexOf(id),
+                1
+            );
+            console.log("noooo");
+            res.redirect("/ask");
+        })
+        .catch((err) => {
+            res.render("error");
+        });
+};
 
 const mostrarThreads = async (req, res) => {
   console.log(req.session.user.username);
@@ -371,5 +409,7 @@ module.exports = {
   treulikeSub,
   donalikeCom,
   treulikeCom,
+    donalikeAsk,
+    treulikeAsk,
 
 };

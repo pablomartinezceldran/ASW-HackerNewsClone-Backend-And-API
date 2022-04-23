@@ -47,6 +47,7 @@ router.post('/like/:id', redirectLogin, submissionController.donalike);
 router.post('/likeNew/:id', redirectLogin, submissionController.donalikeNew);
 router.post('/likeSub/:id', redirectLogin, submissionController.donalikeSub);
 router.post('/likeCom/:id', redirectLogin, submissionController.donalikeCom);
+router.post('/likeAsk/:id', redirectLogin, submissionController.donalikeAsk);
 
 
 router.post("/likeComment/:id", redirectLogin, commentController.donalike);
@@ -54,6 +55,7 @@ router.post("/likeComment/:id", redirectLogin, commentController.donalike);
 router.post('/unlike/:id', redirectLogin, submissionController.treulike);
 router.post('/unlikeNew/:id', redirectLogin, submissionController.treulikeNew);
 router.post('/unlikeSub/:id', redirectLogin, submissionController.treulikeSub);
+router.post('/unlikeAsk/:id', redirectLogin, submissionController.treulikeAsk);
 
 
 router.post("/unlikeComment/:id", redirectLogin, commentController.treulike);
