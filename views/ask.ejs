@@ -26,14 +26,14 @@
       function vote(msj, id) {
         document.getElementById(id).disabled = true;
         const Http = new XMLHttpRequest();
-        const url = "/like/" + msj;
+        const url = "/likeAsk/" + msj;
         Http.open("POST", url);
         Http.send();
       }
       function unvote(msj, id, id2) {
         document.getElementById(id2).disabled = false;
         const Http = new XMLHttpRequest();
-        const url = "/unlike/" + msj;
+        const url = "/unlikeAsk/" + msj;
         Http.open("POST", url);
         Http.send();
       }
@@ -194,7 +194,7 @@
                     <% if(session.user &&
                             !session.user.likedsubmissions.includes((submission._id).toString())){
                     %>
-                      <form action="/like/<%= submission._id %>" method="POST">
+                      <form action="/likeAsk/<%= submission._id %>" method="POST">
                         <button
                                 style="background-color: transparent; border: none"
                                 id="id<%= i %>x"
@@ -203,7 +203,7 @@
                         </button>
                       </form>
                     <% } else if(!session.user){ %>
-                      <form action="/like/<%= submission._id %>" method="POST">
+                      <form action="/likeAsk/<%= submission._id %>" method="POST">
                         <button
                                 style="background-color: transparent; border: none"
                                 id="id<%= i %>x"
@@ -226,11 +226,11 @@
                   <td></td>
                   <td style="padding-left: 15px">
                     <%= submission.votes %> points | by
-                    <a href="/user/<%= submission.username%>"
+                    <a style="color: #828282;" href="/user/<%= submission.username%>"
                       ><%= submission.username%></a
                     >
                     at <%=submission.createdAt%> %> |
-                    <a href="/submission/<%=submission._id%>">
+                    <a style="color: #828282;" href="/submission/<%=submission._id%>">
                       <% if (submission.numcomments==0){ %>
                         discuss
                       <% } else {%>
@@ -243,7 +243,7 @@
                     <% if(session.user &&
                             session.user.likedsubmissions.includes((submission._id).toString())){
                     %>
-                      <form action="/unlike/<%= submission._id %>" method="POST">
+                      <form action="/unlikeAsk/<%= submission._id %>" method="POST">
                         <button
                                 style="
                           height: 7px;
