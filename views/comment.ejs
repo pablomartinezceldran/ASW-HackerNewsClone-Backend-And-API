@@ -93,6 +93,7 @@
                 <td></td>
                 <td style = "padding-left: 15px; padding-top: 10px; color: black">
                     <%= comment.text%>
+                    <%= console.log(comment.id)%>
                 </td>
             </tr>
             <tr>
@@ -105,8 +106,8 @@
                             <tr>
                                 <td><textarea type="text" id="text" name="text" required class="input" style="height:150px; width: 600px"></textarea></td>
                                 <td><input type="hidden" id="submissionId" name="submissionId" value= "<%= comment.submissionId%>"></td>
-                                <td><input type="hidden" id="ParentId" name="ParentId" value= "<%= comment.id%>"></td>
                                 <td><input type="hidden" id="profunditat" name="profunditat" value= "<%= comment.profunditat + 1%>"></td>
+                                <td><input type="hidden" id="ParentId" name="ParentId" value= "<%= comment.id%>"></td>
                             </tr>
                             <tr style="height: 20px"></tr>
                             <tr><td><button class="btn btn-secondary btn-sm">Reply</button></td></tr>

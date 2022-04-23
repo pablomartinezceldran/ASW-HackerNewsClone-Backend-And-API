@@ -39,7 +39,6 @@ const mostrarSubmission = async (req, res) => {
 async function afegirComentaris(id, sub_id) {
   var array = [];
   let reply = await comment.find({ submissionId: sub_id, ParentId: id });
-  //console.log(reply[0]);
   if (reply == null) {
     return array;
   } else {
@@ -47,7 +46,6 @@ async function afegirComentaris(id, sub_id) {
     for (var i = 0; i < con; i++) {
       var temp = [];
       temp = await afegirComentaris(reply[i].id, sub_id);
-      console.log(reply[i].id);
       array.push(reply[i]);
       var long = temp.length;
       for (var j = 0; j < long; j++) {
@@ -83,6 +81,7 @@ const mostrarSubmissionTree = async (req, res) => {
       } else temp[j].username = "undefined";
       array.push(temp[j]);
     }
+    //console.log(array);
   }
   res.render("submission", {
     subtree: data,

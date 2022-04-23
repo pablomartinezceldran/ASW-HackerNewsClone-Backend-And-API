@@ -27,7 +27,7 @@ const commentScheme = new mongoose.Schema(
 
         ParentId: {
             type: Schema.Types.ObjectId, ref: 'comment',
-            required: false
+            default: null
         },
 
         user: {

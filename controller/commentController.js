@@ -22,7 +22,7 @@ const createReply = async (req, res) => {
     text: req.body.text,
     profunditat: req.body.profunditat,
     submissionId: req.body.submissionId,
-    ParentId: req.body.parentId,
+    ParentId: req.body.ParentId,
     user: req.session.user,
   });
   sub.save().then(async (result) => {
