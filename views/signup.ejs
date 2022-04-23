@@ -4,75 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>SignUp</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
-    <td class="nav-links">
-        <a class="nav-link" href="/" style="padding-left: 0px">
-          <span class="page-top">
-            <b class="navText">Home Page</b>
-          </span>
-        </a>
-      </td>
-      <br>
-      <br>
+    <div class="form">
+      <div class="header">
+        <a href="/">Home</a>
+      </div>
       <h2>Sign Up</h2>
-    </form>
-    <br />
-    <form action="/signup" method="POST">
-      <table class="formTable">
-        <tbody>
-          <tr style="height: 10px"></tr>
-          <td class="label"><label for="username">Username:</label> <br /></td>
-          <td>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              required
-              class="input"
-            />
-          </td>
-
-          <tr>
-            <td class="label"><label for="password">Password:</label><br /></td>
-            <td>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                required
-                class="input"
-              />
-            </td>
-          </tr>
-          <tr style="height: 20px"></tr>
-          <tr>
-            <td></td>
-            <td>
-              <button>Create Account</button>
-            </td>
-          </tr>
-          <tr style="height: 30px"></tr>
-          <tr>
-            <td class="textSeparation"></td>
-            <td>
-              <% if (typeof errorMessage !== "undefined") { %>
-              <p><%= errorMessage %></p>
-              <% } %>
-            </td>
-          </tr>
-          <tr class="bottomSpace"></tr>
-        </tbody>
-      </table>
-    </form>
-    <td class="nav-links">
-      Ya registrado? Entonces
-      <a class="nav-link" href="/login" style="padding-left: 0px">
-        <span class="page-top">
-          <b class="navText">Log in</b>
-        </span>
-      </a>
-    </td>
+      <div class="simpleLogin">
+        <form action="/login" method="post">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            class="input"
+            placeholder="username"
+          />
+          <input
+            type="text"
+            id="password"
+            name="password"
+            required
+            class="input"
+            placeholder="password"
+          />
+          <button>Sign Up</button>
+          <% if (typeof errorMessage !== "undefined") { %>
+          <br />
+          <p><%= errorMessage %></p>
+          <% } %>
+          <br />
+        </form>
+      </div>
+      <br />
+      <a href="/auth/google" class="btn btn-danger"
+        ><span class="fa fa-google"></span> Sign In with Google</a
+      >
+      <br />
+      <br />
+      <span>
+        <label>Ya registrado? Prueba</label>
+        <a href="/login">Log in</a>
+      </span>
+    </div>
   </body>
 </html>
